@@ -68,8 +68,8 @@
                             <div class="col-lg-10"><input type="text" name="username" required class="form-control">
                             </div>
                             <div class="form-group"><label class="col-lg-20 control-label">Email </label>
-                                <div class="col-lg-10"><input type="email" name="email" required
-                                        class="form-control"></div>
+                                <div class="col-lg-10"><input type="email" name="email" required class="form-control">
+                                </div>
                                 <div class="form-group"><label class="col-lg-20 control-label">Hak Akses</label>
                                     <div class="col-lg-10">
                                         <select id="roles" name="roles" class="form-control" required>
