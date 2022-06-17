@@ -14,7 +14,7 @@ class AkunController extends Controller
     public function index()
     {
         $akun=\App\Akun::All();
-        return view('akun.akun.akun',['akun'=>$akun]);
+        return view('akun.akun',['akun'=>$akun]);
     }
 
     /**
