@@ -78,7 +78,11 @@
                 <div id="collapseUtilities" class="collapse"
                     aria-labelledby="headingUtilities"data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
+<<<<<<< HEAD
                         <a class="collapse-item" href="{{ route('pemesanan.transaksi') }}">Pemesanan</a>
+=======
+                        <a class="collapse-item" href="utilities-color.html">Pemesanan</a>
+>>>>>>> e0627f7f2a46cd69dd6d0d7634ecf5560d1c0bc6
                         <a class="collapse-item" href="utilities-border.html">Pembayaran</a>
                     </div>
                 </div>
@@ -183,6 +187,7 @@
                     <!-- DataTales Example -->
                     <!-- Page Heading -->
                     @yield('content')
+                    @include('sweetalert::alert')
 
                 </div>
                 <!-- /.container-fluid -->

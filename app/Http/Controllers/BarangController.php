@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Barang;
 use Alert;
 class BarangController extends Controller
 {
@@ -13,7 +14,7 @@ class BarangController extends Controller
      */
     public function index()
     {
-        $barang=\App\Barang::All();
+        $barang=Barang::All();
         return view('barang.barang',['barang'=>$barang]);
     }
 
@@ -35,15 +36,15 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        $tambah_barang=new \App\Barang;
+        $tambah_barang=new Barang;
         $tambah_barang->kd_brg = $request->addkdbrg;
         $tambah_barang->nm_brg = $request->addnmbrg;
         $tambah_barang->qty = $request->addqty;
         $tambah_barang->satuan = $request->addsatuan;
         $tambah_barang->harga = $request->addharga;
         $tambah_barang->save();
-        Alert::success('Pesan ','Data berhasil disimpan');
-        return redirect('/barang');
+        Alert::success('Data berhasil disimpan');
+        return redirect()->route('barang.index');
 
     }
 
@@ -66,7 +67,8 @@ class BarangController extends Controller
      */
     public function edit($id)
     {
-        //
+        $barang = Barang::find($id);
+        return view('barang.editBarang', compact('barang'));
     }
 
     /**
@@ -78,7 +80,7 @@ class BarangController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update_barang = \App\Barang::findOrFail($id);
+        $update_barang = Barang::findOrFail($id);
         $update_barang->kd_brg=$request->get('addkdbrg');
         $update_barang->nm_brg=$request->get('addnmbrg');
         $update_barang->qty=$request->get('addqty');
@@ -95,9 +97,9 @@ class BarangController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($kd_brg)
     {
-        $barang=\App\Barang::findOrFail($kd_brg);
+        $barang=Barang::findOrFail($kd_brg);
         $barang->delete();
         Alert::success('Pesan ','Data berhasil dihapus');
         return redirect()->route('barang.index');

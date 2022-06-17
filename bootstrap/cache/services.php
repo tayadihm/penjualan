@@ -34,10 +34,11 @@
     30 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
     31 => 'Spatie\\Permission\\PermissionServiceProvider',
     32 => 'Barryvdh\\DomPDF\\ServiceProvider',
-    33 => 'App\\Providers\\AppServiceProvider',
-    34 => 'App\\Providers\\AuthServiceProvider',
-    35 => 'App\\Providers\\EventServiceProvider',
-    36 => 'App\\Providers\\RouteServiceProvider',
+    33 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
+    34 => 'App\\Providers\\AppServiceProvider',
+    35 => 'App\\Providers\\AuthServiceProvider',
+    36 => 'App\\Providers\\EventServiceProvider',
+    37 => 'App\\Providers\\RouteServiceProvider',
   ),
   'eager' => 
   array (
@@ -61,10 +62,11 @@
     17 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
     18 => 'Spatie\\Permission\\PermissionServiceProvider',
     19 => 'Barryvdh\\DomPDF\\ServiceProvider',
-    20 => 'App\\Providers\\AppServiceProvider',
-    21 => 'App\\Providers\\AuthServiceProvider',
-    22 => 'App\\Providers\\EventServiceProvider',
-    23 => 'App\\Providers\\RouteServiceProvider',
+    20 => 'RealRashid\\SweetAlert\\SweetAlertServiceProvider',
+    21 => 'App\\Providers\\AppServiceProvider',
+    22 => 'App\\Providers\\AuthServiceProvider',
+    23 => 'App\\Providers\\EventServiceProvider',
+    24 => 'App\\Providers\\RouteServiceProvider',
   ),
   'deferred' => 
   array (

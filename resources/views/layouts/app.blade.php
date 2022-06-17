@@ -79,6 +79,7 @@
 
         <main class="py-4">
             @yield('content')
+            @include('sweetalert::alert')
         </main>
     </div>
 </body>
