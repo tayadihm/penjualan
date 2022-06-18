@@ -10,7 +10,7 @@
         @csrf
         <div class="card-header py-3" align="right">
             <input type="search">
-            <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal"
+            <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
                 data-target="#exampleModalScrollable">
 
                 <i class="fas fa-plus fa-sm text-white-50"></i>Cari
@@ -101,10 +101,16 @@
                             </div>
 
                         </div>
-                        <!-- /.card-body -->
-                        <div class="card-footer">
-                            <button type="submit" class="btn btn-primary bten-send">Simpan</button>
-                        </div>
+
+                        <form class="form-horizontal">
+                            <div class="card-body">
+                                <td align="center">
+                                    <a href="" class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
+                                        <i class="fas fa-edit fa-sm text-white-50"></i>Simpan
+                                    </a>
+                                </td>
+                            </div>
+                        </form>
                     </form>
                 </div>
             </div>

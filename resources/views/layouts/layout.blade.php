@@ -82,6 +82,8 @@
                         <a class="collapse-item" href="{{ route('pemesanan.transaksi') }}">Pemesanan</a>
 
                         <a class="collapse-item" href="{{ route('pembayaran.pembayaran') }}">Pembayaran</a>
+
+                        <a class="collapse-item" href="{{ route('pengiriman.pengiriman') }}">Pengiriman</a>
                     </div>
                 </div>
             </li>
