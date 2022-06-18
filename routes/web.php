@@ -19,21 +19,13 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
 Route::get('/home', 'HomeController@index')->name('home');
-<<<<<<< HEAD
 Route::group(['middleware' => ['role:marketing']], function () {
     Route::resource('/user', 'userController');
     Route::get('/user/hapus/{id}', 'userController@destroy');
-    Route::resource('/barang', 'barangController');
-    Route::get('/barang/hapus/{id}', 'barangController@destroy');
-=======
-Route::group(['middleware' => ['role:marketing']], function() {
-    Route::resource('/user','userController');
-    Route::get('/user/hapus/{id}','userController@destroy');
-    Route::resource('/barang','BarangController');
-    Route::get('/barang/hapus/{id}','BarangController@destroy');
->>>>>>> e0627f7f2a46cd69dd6d0d7634ecf5560d1c0bc6
+    Route::resource('/barang', 'BarangController');
+    Route::get('/barang/hapus/{id}', 'BarangController@destroy');
+
     Route::resource('/customer', 'customerController');
     Route::get('/customer/hapus/{id}', 'customerController@destroy');
     Route::resource('/akun', 'akunController');
@@ -46,4 +38,7 @@ Route::group(['middleware' => ['role:marketing']], function() {
     //Detail Pesan
     Route::post('/detail/store', 'DetailPesanController@store');
     Route::post('/detail/simpan', 'DetailPesanController@simpan');
+
+    //pembayaran
+    Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.pembayaran');
 });

@@ -16,11 +16,13 @@
             <input type="hidden" name="no_jurnal" value="" class="form-control" id="exampleFormControlInput1">
 
         </div>
+
         <div class="form-group col-sm-4">
             <label for="exampleFormControlInput1">Tanggal Transaksi</label>
             <input type="date" min="1" name="tgl" id="addnmbrg" class="form-control"
                 id="exampleFormControlInput1" require>
         </div>
+
         <div class="form-group col-sm-4">
             <label for="exampleFormControlInput1">Customer</label>
             <select name="cust" id="cust select2" class="form-control" required width="100%">
@@ -30,6 +32,24 @@
                         -{{ $cust->email }} -{{ $cust->alamat }} </option>
                 @endforeach --}}
             </select>
+        </div>
+
+        <div class="form-group col-sm-4">
+            <label for="exampleFormControlInput1">Kode Konsumen</label>
+            <select name="cust" id="cust select2" class="form-control" required width="100%">
+                <option value="">Pilih</option>
+            </select>
+        </div>
+
+        <div class="form-group col-sm-4">
+            <label for="exampleFormControlInput1">Nama Konsumen</label>
+            <input type="text" class="form-control" id="exampleFormControlInput1" require>
+        </div>
+
+        <div class="form-group col-sm-4">
+            <label for="exampleFormControlInput1">Tanggal Jatuh Tempo</label>
+            <input type="date" min="1" name="tgl" id="addnmbrg" class="form-control"
+                id="exampleFormControlInput1" require>
         </div>
 
         <div class="card-header py-3" align="right">
@@ -111,10 +131,6 @@
                             <label for="exampleFormControlInput1">Barang</label>
                             <select name="brg" id="kd_brg select2" class="form-control" required width="100%">
                                 <option value="">Pilih</option>
-                                {{-- @foreach ($barang as $product)
-                                    <option value="{{ $product->kd_brg }}">{{ $product->kd_brg }} -
-                                        {{ $product->nm_brg }} [{{ number_format($product->harga) }}]</option>
-                                @endforeach --}}
                             </select>
                         </div>
                         <div class="form-group">
