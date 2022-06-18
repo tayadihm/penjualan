@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Customer;
 use Alert;
 class CustomerController extends Controller
 {
@@ -35,15 +36,15 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        $tambah_customer=new \App\Barang;
+        $tambah_customer=new \App\Customer;
         $tambah_customer->idcust = $request->addidcust;
-        $tambah_customer->nm_brg = $request->addnmcust;
+        $tambah_customer->nm_cust = $request->addnmcust;
         $tambah_customer->nohp = $request->addnohp;
         $tambah_customer->email = $request->addemail;
-        $tambah_customer->alamat = $request->addhalamat;
+        $tambah_customer->alamat = $request->addalamat;
         $tambah_customer->save();
-        Alert::success('Pesan ','Data berhasil disimpan');
-        return redirect('/customer');
+        Alert::success('Data berhasil disimpan');
+        return redirect()->route('customer.index');
 
     }
 
@@ -66,7 +67,8 @@ class CustomerController extends Controller
      */
     public function edit($id)
     {
-        //
+        $customer = Customer::find($id);
+        return view('customer.editCustomer', compact('customer'));
     }
 
     /**
@@ -78,7 +80,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update_customer = \App\Barang::findOrFail($id);
+        $update_customer = \App\Customer::findOrFail($id);
         $update_customer->idcust=$request->get('addidcust');
         $update_customer->nm_cust=$request->get('addnmcust');
         $update_customer->nohp=$request->get('addnohp');
@@ -97,7 +99,8 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        $customer=\App\Customer::findOrFail($kd_brg);
+
+        $customer=\App\Customer::findOrFail($id);
         $customer->delete();
         Alert::success('Pesan ','Data berhasil dihapus');
         return redirect()->route('customer.index');

@@ -1,34 +1,31 @@
 @extends('layouts.layout')
 @section('content')
     @include('sweetalert::alert')
-    <form action="{{ route('customer.update', [$barang->kd_brg]) }}" method="POST">
+    <form action="{{ route('customer.update', [$customer->idcust]) }}" method="POST">
         @csrf
         <input type="hidden" name="_method" value="PUT">
         <fieldset>
-            <legend>Ubah Data Barang</legend>
+            <legend>Ubah Data customer</legend>
             <div class="form-group row">
                 <div class="col-md-5">
-                    <label for="addkdbrg">Kode Barang</label>
-                    <input class="form-control" type="text" name="addkdbrg" value="{{ $barang->kd_brg }}" readonly>
+                    <label for="addidcust">Kode customer</label>
+                    <input id="addidcust" class="form-control" type="text" name="addidcust" value="{{ $customer->idcust }}" readonly>
                 </div>
                 <div class="col-md-5">
-                    <label for="addnmbrg">Nama Barang</label>
-                    <input id="addnmbrg" type="text" name="addnmbrg" class="form-control"
-                        value="{{ $barang->nm_brg }}">
+                    <label for="addnmcust">Nama customer</label>
+                    <input id="addnmcust" type="text" name="addnmcust" class="form-control" value="{{ $customer->nm_cust }}">
                 </div>
                 <div class="col-md-5">
-                    <label for="Qty">Qty</label>
-                    <input id="addqty" type="text" name="addqty" class="form-control" value="{{ $barang->qty }}">
+                    <label for="addnohp">Nomor HP</label>
+                    <input id="addnohp" type="text" name="addnohp" class="form-control" value="{{ $customer->nohp }}">
                 </div>
                 <div class="col-md-5">
-                    <label for="Satuan">Satuan</label>
-                    <input id="addsatuan" type="text" name="addsatuan" class="form-control"
-                        value="{{ $barang->satuan }}">
+                    <label for="addemail">Email</label>
+                    <input id="addemail" type="text" name="addemail" class="form-control" value="{{ $customer->email }}">
                 </div>
                 <div class="col-md-5">
-                    <label for="Harga">Harga</label>
-                    <input id="addharga" type="text" name="addharga" class="form-control"
-                        value="{{ $barang->harga }}">
+                    <label for="addalamat">Alamat</label>
+                    <input id="addalamat" type="text" name="addalamat" class="form-control" value="{{ $customer->alamat }}">
                 </div>
 
 

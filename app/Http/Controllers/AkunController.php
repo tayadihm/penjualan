@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Akun;
 use Alert;
 class AkunController extends Controller
 {
@@ -24,7 +25,7 @@ class AkunController extends Controller
      */
     public function create()
     {
-        return view('akun.akun.input');
+        return view('akun.input');
 
     }
 
@@ -38,7 +39,7 @@ class AkunController extends Controller
     {
         //untuk menyimpan data
         $tambah_akun=new \App\Akun;
-        $tambah_akun->no_akun = $request->addnoakun;
+        $tambah_akun->kd_akun = $request->addkdakun;
         $tambah_akun->nm_akun = $request->addnmakun;
         $tambah_akun->save(); // method
         Alert::success('Pesan ','Data berhasil disimpan'); //anak dari alert //success atau gagal disebut polymorpy
@@ -64,7 +65,8 @@ class AkunController extends Controller
      */
     public function edit($id)
     {
-        //
+        $akun = Akun::find($id);
+        return view('akun.edit', compact('akun'));
     }
 
     /**
@@ -76,7 +78,12 @@ class AkunController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $akun = \App\Akun::findOrFail($id);
+        $akun->kd_akun=$request->get('addkdakun');
+        $akun->nm_akun=$request->get('addnmakun');
+        $akun->save();
+        Alert::success('Update', 'Data Berhasil di update');
+        return redirect()->route( 'akun.index');
     }
 
     /**
@@ -87,6 +94,9 @@ class AkunController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $akun = Akun::findOrFail($id);
+        $akun->delete();
+        Alert::success('Data Berhasil di Hapus');
+        return redirect()->route('akun.index');
     }
 }

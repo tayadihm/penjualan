@@ -30,7 +30,7 @@
                             <tr>
                                 <td>{{ $cust->idcust }}</td>
                                 <td>{{ $cust->nm_cust }}</td>
-                                <td>{{ number_format($cust->nohp) }}</td>
+                                <td>{{ $cust->nohp }}</td>
                                 <td>{{ $cust->email }}</td>
                                 <td>{{ $cust->alamat }}</td>
                                 <td align="center"><a
@@ -50,49 +50,51 @@
     </div>
     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Tambah Data Customer</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Id Customer</label>
-                        <input type="number" name="addidcust" id="addidcust" class="form-control" maxlegth="5"
-                            id="exampleFormControlInput1">
+        <form name="frm_add" id="frm_add" class="form-horizontal" action="#" method="POST"
+            enctype="multipart/form-data">
+            @csrf
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Tambah Data Customer</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Nama Customer</label>
-                        <input type="text" name="addnmcust" id="addnmcust" class="form-control"
-                            id="exampleFormControlInput1">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Id Customer</label>
+                            <input type="number" name="addidcust" id="addidcust" class="form-control" maxlegth="5"
+                                id="exampleFormControlInput1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Nama Customer</label>
+                            <input type="text" name="addnmcust" id="addnmcust" class="form-control"
+                                id="exampleFormControlInput1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">No Handphone</label>
+                            <input type="number" name="addnohp" id="nohp" class="form-control"
+                                id="exampleFormControlInput1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Email</label>
+                            <input type="text" name="addemail" id="addemail" class="form-control"
+                                id="exampleFormControlInput1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Alamat</label>
+                            <input type="text" name="addalamat" id="addalamat" class="form-control"
+                                id="exampleFormControlInput1">
+                        </div>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">No Handphone</label>
-                        <input type="number" name="addnohp" id="nohp" class="form-control"
-                            id="exampleFormControlInput1">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Batal</button>
+                        <input type="submit" class="btn btn-primary btn-send" value="Simpan">
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Email</label>
-                        <input type="text" name="addemail" id="addemail" class="form-control"
-                            id="exampleFormControlInput1">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Alamat</label>
-                        <input type="text" name="addalamat" id="addalamat" class="form-control"
-                            id="exampleFormControlInput1">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Batal</button>
-                    <input type="submit" class="btn btn-primary btn-send" value="Simpan">
                 </div>
             </div>
-            </form>
-        </div>
+        </form>
+    </div>
     </div>
 @endsection

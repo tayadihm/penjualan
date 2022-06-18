@@ -1,13 +1,13 @@
 @extends('layouts.layout')
 @section('content')
-    <form action="{{ route('akun.update', [$akun->no_akun]) }}" method="POST">@csrf
+    <form action="{{ route('akun.update', [$akun->kd_akun]) }}" method="POST">@csrf
         <input type="hidden" name="_method" value="PUT">
         <fieldset>
             <legend>Rubah Form Data Akun</legend>
             <div class="form-group row">
                 <div class="col-md-5">
-                    <label for="addnoakun">Kode Akun</label>
-                    <input id="addnoakun" type="text" name="addnoakun" class="form-control" value="{{ $akun->no_akun }}">
+                    <label for="addkdakun">Kode Akun</label>
+                    <input id="addkdakun" type="text" name="addkdakun" class="form-control" value="{{ $akun->kd_akun }}">
                 </div>
                 <div class="col-md-5">
                     <label for="addnmakun">Nama Akun</label>
