@@ -44,34 +44,36 @@
     </div>
     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Tambah Data Akun</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Kode Akun</label>
-                        <input type="text" name="addkdakun" id="addkdakun" class="form-control"
-                            id="exampleFormControlInput1">
+        <form name="frm_add" id="frm_add" class="form-horizontal" action="#" method="POST"
+            enctype="multipart/form-data">
+            @csrf
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalScrollableTitle">Tambah Data Akun</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Nama Akun</label>
-                        <input type="text" name="addnmakun" id="addnmakun" class="form-control"
-                            id="exampleFormControlInput1">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Kode Akun</label>
+                            <input type="text" name="addkdakun" id="addkdakun" class="form-control"
+                                id="exampleFormControlInput1">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1">Nama Akun</label>
+                            <input type="text" name="addnmakun" id="addnmakun" class="form-control"
+                                id="exampleFormControlInput1">
+                        </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Batal</button>
-                    <input type="submit" class="btn btn-primary btn-send" value="Simpan">
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal"> Batal</button>
+                        <input type="submit" class="btn btn-primary btn-send" value="Simpan">
+                    </div>
                 </div>
             </div>
-            </form>
-        </div>
+        </form>
+    </div>
     </div>
 @endsection

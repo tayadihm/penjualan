@@ -50,53 +50,10 @@
     </div>
     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable" role="document">
-<<<<<<< HEAD
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalScrollableTitle">Tambah Data Barang</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
-                @csrf
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Kode Barang</label>
-                        <input type="text" name="addkdbrg" id="addkdbrg" class="form-control" maxlegth="5"
-                            id="exampleFormControlInput1">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Nama Barang</label>
-                        <input type="text" name="addnmbrg" id="addnmbrg" class="form-control"
-                            id="exampleFormControlInput1">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Qty</label>
-                        <input type="number" name="addqty" id="qty" class="form-control"
-                            id="exampleFormControlInput1">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Satuan</label>
-                        <input type="text" name="addsatuan" id="addsatuan" class="form-control"
-                            id="exampleFormControlInput1">
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Harga</label>
-                        <input type="number" name="addharga" id="addharga" class="form-control"
-                            id="exampleFormControlInput1">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"> Batal</button>
-                    <input type="submit" class="btn btn-primary btn-send" value="Simpan">
-                </div>
-            </div>
-=======
-            <form name="frm_add" id="frm_add" class="form-horizontal" action="#" method="POST"
-                enctype="multipart/form-data">
-                @csrf
+        <form name="frm_add" id="frm_add" class="form-horizontal" action="#" method="POST"
+            enctype="multipart/form-data">
+            @csrf
+            <div class="modal-dialog modal-dialog-scrollable" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalScrollableTitle">Tambah Data Barang</h5>
@@ -133,11 +90,11 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal"> Batal</button>
-                        <button type="submit" class="btn btn-primary">Simpan</button>
+                        <input type="submit" class="btn btn-primary btn-send" value="Simpan">
                     </div>
                 </div>
->>>>>>> e0627f7f2a46cd69dd6d0d7634ecf5560d1c0bc6
-            </form>
-        </div>
+            </div>
+        </form>
+    </div>
     </div>
 @endsection
