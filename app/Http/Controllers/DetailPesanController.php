@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DetailPesan;
 use App\Pemesanan;
+use App\Temp_Pemesanan;
 use Alert;
 use DB;
 use PDF;
@@ -38,38 +39,37 @@ class DetailPesanController extends Controller
     */
    public function store(Request $request)
    {
-       //
-      
-      
-      
-   }
-   public function simpan(Request $request)
-   {
-       //Simpan ke table pemesanan
+        //Simpan ke table pemesanan
        $tambah_pemesanan=new \App\Pemesanan;
        $tambah_pemesanan->no_psn = $request->no_psn;
        $tambah_pemesanan->tgl_psn = $request->tgl_psn ;
        $tambah_pemesanan->nm_cust = $request->nm_cust;
        $tambah_pemesanan->total = $request->total;
-       $tambah_pemesanan->tgl_tempo  = $request->tgltem;
+       $tambah_pemesanan->tgl_tempo  = $request->tgl_tempo;
        $tambah_pemesanan->save();
        //SIMPAN DATA KE TABEL DETAIL
+       
        $no_psn = $request->no_psn;
        $kd_brg = $request->kd_brg;
-       $qty= $request->qty_psn;
-       $subtot= $request->subtot;
+       $nm_brg = $request->nm_brg;
+       $qty_pesan = $request->qty_pesan;
+       $sub_total = $request->sub_total;
        foreach($kd_brg as $key => $no)
        {
            $input['no_psn'] = $request->no_psn;
            $input['kd_brg'] = $kd_brg[$key];
-           $input['qty_psn'] = $qty[$key];
-           $input['subtot'] = $subtot[$key];
+           $input['nm_brg'] = $nm_brg[$key];
+           $input['qty_pesan'] = $qty_pesan[$key];
+           $input['sub_total'] = $sub_total[$key];
            DetailPesan::insert($input);
           
        }
-       Alert::success('Pesan ','Data berhasil disimpan');
-       return redirect('/transaksi');
-     
+       Alert::success('Data berhasil disimpan');
+       return redirect('/transaksi'); 
+   }
+   
+   public function simpan(Request $request)
+   {
       
    }
 

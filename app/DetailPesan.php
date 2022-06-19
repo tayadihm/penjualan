@@ -4,12 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Pemesanan extends Model
+class DetailPesan extends Model
 {
     protected $primaryKey = 'no_psn';
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;
-    protected $table = "pemesanan";
-    protected $fillable=['no_psn','tgl_psn','idcust' , 'tgl_tempo' , 'total'];
+    protected $table = "detail_pesan";
+    protected $fillable=['no_psn','kd_brg','nm_brg','qty_pesan','sub_total'];
 }

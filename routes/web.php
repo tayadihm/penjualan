@@ -23,14 +23,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['role:marketing']], function () {
     Route::resource('/user', 'userController');
     Route::get('/user/hapus/{id}', 'userController@destroy');
-<<<<<<< HEAD
-    Route::resource('/barang', 'BarangController');
-    Route::get('/barang/hapus/{id}', 'BarangController@destroy');
-
-=======
     Route::resource('/barang', 'barangController');
     Route::get('/barang/hapus/{id}', 'barangController@destroy');
->>>>>>> 16c99af85dc0445063e862be5db292bfedd808c9
     Route::resource('/customer', 'customerController');
     Route::get('/customer/hapus/{id}', 'customerController@destroy');
     Route::resource('/akun', 'akunController');
