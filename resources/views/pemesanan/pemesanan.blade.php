@@ -5,50 +5,38 @@
         <h1 class="h3 mb-0 text-gray-800">Transaksi Pemesanan </h1>
     </div>
     <hr>
-    <form action="/detail/simpan" method="POST">
+    <form action="/detail/store" method="POST">
         @csrf
-        <div class="form-group col-sm-4">
-            <label for="exampleFormControlInput1">No Transaksi</label>
+        <div class="form-group col-sm-8">
+            <label for="exampleFormControlInput1">No Pemesanan</label>
 
             {{-- <input type="text" name="no_psn" value="{{ $formatnya }}" class="form-control" id="exampleFormControlInput1">
             <input type="hidden" name="no_jurnal" value="{{ $formatnyaj }}" class="form-control" --}}
-            <input type="text" name="no_psn" value="" class="form-control" id="exampleFormControlInput1">
-            <input type="hidden" name="no_jurnal" value="" class="form-control" id="exampleFormControlInput1">
+            <input type="text" name="no_psn" value="{{ $formatnya }}" class="form-control" id="exampleFormControlInput1" readonly>
+            {{-- <input type="hidden" name="no_jurnal" value="" class="form-control" id="exampleFormControlInput1"> --}}
 
         </div>
 
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-8">
             <label for="exampleFormControlInput1">Tanggal Transaksi</label>
-            <input type="date" min="1" name="tgl" id="addnmbrg" class="form-control"
+            <input type="date" min="1" name="tgl_psn" id="tgl_psn" class="form-control"
                 id="exampleFormControlInput1" require>
         </div>
 
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-8">
             <label for="exampleFormControlInput1">Customer</label>
-            <select name="cust" id="cust select2" class="form-control" required width="100%">
+            <select name="nm_cust" id="cust select2" class="form-control" width="100%" required>
                 <option value="">Pilih</option>
-                {{-- @foreach ($customer as $cust)
-                    <option value="{{ $cust->id_cust }}">{{ $cust->nm_cust }} - {{ $cust->nohp }}
-                        -{{ $cust->email }} -{{ $cust->alamat }} </option>
-                @endforeach --}}
+                @foreach ($customer as $cust)
+                    <option value="{{ $cust->idcust }}">{{ $cust->nm_cust }} - {{ $cust->nohp }}
+                        - {{ $cust->email }} - {{ $cust->alamat }} </option>
+                @endforeach
             </select>
         </div>
 
-        <div class="form-group col-sm-4">
-            <label for="exampleFormControlInput1">Kode Konsumen</label>
-            <select name="cust" id="cust select2" class="form-control" required width="100%">
-                <option value="">Pilih</option>
-            </select>
-        </div>
-
-        <div class="form-group col-sm-4">
-            <label for="exampleFormControlInput1">Nama Konsumen</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" require>
-        </div>
-
-        <div class="form-group col-sm-4">
+        <div class="form-group col-sm-8">
             <label for="exampleFormControlInput1">Tanggal Jatuh Tempo</label>
-            <input type="date" min="1" name="tgl" id="addnmbrg" class="form-control"
+            <input type="date" min="1" name="tgl_tempo" id="tgl_tempo" class="form-control"
                 id="exampleFormControlInput1" require>
         </div>
 
@@ -67,24 +55,24 @@
                             <tr>
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>
-                                <th>Id Customer</th>
-                                <th>Total</th>
-                                <th>Tanggal Tempo</th>
+                                <th>Qty</th>
+                                <th>Subtotal</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @php($total = 0)
+                            @php($total = 0)
                             @foreach ($temp_pemesanan as $temp)
                                 <tr>
                                     <td><input name="kd_brg[]" class="form-control" type="hidden"
                                             value="{{ $temp->kd_brg }}" readonly>{{ $temp->kd_brg }}</td>
-                                    <td><input name="nama" class="form-control" type="hidden"
+                                    <td><input name="nm_brg[]" class="form-control" type="hidden"
                                             value="{{ $temp->nm_brg }}" readonly>{{ $temp->nm_brg }}</td>
-                                    <td><input name="id_cust[]" class="form-control" type="hidden"
-                                            value="{{ $temp->id_cust }}" readonly>{{ $temp->id_cust }}</td>
-                                    <td> <input name="subtot[]" class="form-control" type="hidden"
-                                            value="{{ $temp->subtot }}" readonly>{{ $temp->sub_subtot }}</td>
+                                    <td><input name="qty_pesan[]" class="form-control" type="hidden"
+                                            value="{{ $temp->qty_pesan }}" readonly>{{ $temp->qty_pesan }}</td>
+                                    <td> <input name="sub_total[]" class="form-control" type="hidden"
+                                            value="{{ $temp->sub_total }}"
+                                            readonly>{{ number_format($temp->sub_total) }}</td>
                                     <td align="center">
                                         <a href="/transaksi/hapus/{{ $temp->kd_brg }}"
                                             onclick="return confirm('Yakin Ingin menghapus data?')"
@@ -92,15 +80,14 @@
                                             <i class="fas fa-trash-alt fa-sm text-white-50"></i> Hapus</a>
                                     </td>
                                 </tr>
-                                @php($total += $temp->subtot)
-                            @endforeach --}}
+                                @php($total += $temp->sub_total)
+                            @endforeach
                             <tr>
-                                <td colspan="3"></td>
-                                <td><input name="total" class="form-control" type="hidden" value=""></a>
+                                <td colspan="3"><b>Total</b></td>
 
-                                    {{-- <td><input name="total" class="form-control" type="hidden"
-                                          value="{{ $total }}">Total {{ number_format($total) }}</a> --}}
-                                <td></td>
+                                <td>
+                                    <input name="total" class="form-control" type="hidden"
+                                        value="{{ $total }}">Total {{ number_format($total) }}</a>
                                 </td>
                             </tr>
                         </tbody>
@@ -131,12 +118,14 @@
                             <label for="exampleFormControlInput1">Barang</label>
                             <select name="brg" id="kd_brg select2" class="form-control" required width="100%">
                                 <option value="">Pilih</option>
+                                @foreach ($barang as $brg)
+                                    <option value="{{ $brg->kd_brg }}">{{ $brg->nm_brg }}</option>
+                                @endforeach
                             </select>
                         </div>
                         <div class="form-group">
                             <label for="exampleFormControlInput1">QTY</label>
-                            <input type="number" min="1" name="qty" id="addnmbrg" class="form-control"
-                                id="exampleFormControlInput1">
+                            <input type="number" min="1" name="qty_pesan" id="qty_pesan" class="form-control">
                         </div>
 
                     </div>

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pemesanan extends Model
 {
-    protected $primaryKey = 'no_pesan';
+    protected $primaryKey = 'no_psn';
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;

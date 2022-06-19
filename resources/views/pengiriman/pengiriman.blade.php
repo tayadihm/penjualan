@@ -8,8 +8,6 @@
 
     <form action="" method="POST">
         @csrf
-
-
         <div class="card card-info">
 
             <!-- /.card-header -->
