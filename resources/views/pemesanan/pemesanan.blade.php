@@ -37,7 +37,7 @@
         <div class="form-group col-sm-8">
             <label for="exampleFormControlInput1">Tanggal Jatuh Tempo</label>
             <input type="date" min="1" name="tgl_tempo" id="tgl_tempo" class="form-control"
-                id="exampleFormControlInput1" require>
+                id="exampleFormControlInput1" required>
         </div>
 
         <div class="card-header py-3" align="right">

@@ -30,6 +30,8 @@ Route::group(['middleware' => ['role:marketing']], function () {
     Route::resource('/akun', 'akunController');
     Route::get('/akun/hapus/{id}', 'akunController@destroy');
     Route::get('/akun/edit/{id}', 'AkunController@edit');
+    Route::get('/setting','SettingController@index')->name('setting.index')->middleware('role:marketing');
+    Route::post('/setting/store','SettingController@store');
     //Pemesanan
     Route::get('/transaksi', 'PemesananController@index')->name('pemesanan.transaksi');
     Route::post('/sem/store', 'PemesananController@store');
@@ -40,6 +42,9 @@ Route::group(['middleware' => ['role:marketing']], function () {
 
     //pembayaran
     Route::get('/pembayaran', 'PembayaranController@index')->name('pembayaran.pembayaran');
+    Route::get('/pembayaran/bayar/{id}', 'PembayaranController@edit'); 
+    Route::post('/pembayaran/store', 'PembayaranController@store');
+    Route::get('/pembayaran/hapus/{no_psn}', 'PembayaranController@destroy');
 
     //pengiriman
     Route::get('/pengiriman', 'PengirimanController@index')->name('pengiriman.pengiriman');

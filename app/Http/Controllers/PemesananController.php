@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Barang;
 use App\Customer;
 use App\Pemesanan;
-use App\Temp_Pemesanan;
+use App\Temp_pemesanan;
 use App\Temp_pesan;
 use Alert;
 
@@ -59,7 +59,7 @@ class PemesananController extends Controller
                 ->update(['qty_psn' => $request->qty_pesan]);
             return redirect('transaksi');
         } else {
-            Temp_Pemesanan::create([
+            Temp_pemesanan::create([
                 'qty_psn' => $request->qty_pesan,
                 'kd_brg' => $request->brg
             ]);
@@ -69,7 +69,7 @@ class PemesananController extends Controller
 
     public function destroy($kd_brg)
     {
-        $barang = \App\Temp_Pemesanan::findOrFail($kd_brg);
+        $barang = \App\Temp_pemesanan::findOrFail($kd_brg);
         $barang->delete();
         // Alert::success('Pesan ', 'Data berhasil dihapus');
         return redirect('transaksi');

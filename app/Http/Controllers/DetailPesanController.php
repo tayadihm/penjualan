@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\DetailPesan;
 use App\Pemesanan;
-use App\Temp_Pemesanan;
+use App\Temp_pemesanan;
 use Alert;
 use DB;
 use PDF;

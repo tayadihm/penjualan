@@ -12,32 +12,40 @@
             <input type="search">
             <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-toggle="modal"
                 data-target="#exampleModalScrollable">
-
                 <i class="fas fa-plus fa-sm text-white-50"></i>Cari
             </button>
         </div>
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <div class="card-body">
-
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
                         <thead class="thead-dark">
                             <tr>
-                                <th>No Pesanan</th>
-                                <th>Tgl. Pesan</th>
-                                <th>Tgl. Jatuh Tempo</th>
-                                <th>Total</th>
+                                <th>No Pemesanan</th>
+                                <th>Tgl Pemesanan</th>
+                                <th>Tgl Jatuh Tempo</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                {{-- <td colspan="3"></td>
+                            @foreach ($pemesanan as $pesan)
+                                <tr>
+                                    {{-- <td colspan="3"></td>
                                 <td><input name="total" class="form-control" type="hidden" value=""></a> --}}
-                                <td>123</td>
-                                <td>123</td>
-                                <td>1234</td>
-                                <td>124</td>
-                            </tr>
+                                    <td>{{ $pesan->no_psn }}</td>
+                                    <td>{{ $pesan->tgl_psn }}</td>
+                                    <td>{{ $pesan->tgl_tempo }}</td>
+                                    <td>
+                                        <a href="{{ url('/pembayaran/bayar/' . Crypt::encryptString($pesan->no_psn)) }}"
+                                            class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm">
+                                            <i class="fas fa-trash-alt fa-sm text-white-50"></i> Bayar</a>
+                                        <a href="/pembayaran/hapus/{{ $pesan->no_psn }}"
+                                            onclick="return confirm('Yakin Ingin menghapus data?')"
+                                            class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                                            <i class="fas fa-trash-alt fa-sm text-white-50"></i> Hapus</a>
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
@@ -69,7 +77,7 @@
 
                 <input type="submit" class="btn btn-primary btn-send" value="Simpan"> --}}
 
-                <div class="card card-info">
+                {{-- <div class="card card-info">
 
                     <!-- /.card-header -->
                     <!-- form start -->
@@ -112,7 +120,7 @@
                             </div>
                         </form>
                     </form>
-                </div>
+                </div> --}}
             </div>
         </div>
 

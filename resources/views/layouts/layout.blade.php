@@ -63,6 +63,8 @@
                                 Customer</a>
                             <a class="collapse-item fas fa-arrow-circle-right" href="{{ route('akun.index') }}">Data
                                 Akun</a>
+                            <a class="collapse-item fas fa-arrow-circle-right" href="{{ route('setting.index') }}">Data
+                                Setting Akun</a>
                         </div>
                     </div>
                 @endrole

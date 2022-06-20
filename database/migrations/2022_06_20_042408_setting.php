@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class TriggerTambah extends Migration
+class Setting extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,12 @@ class TriggerTambah extends Migration
      */
     public function up()
     {
-        DB::unprepared('
-            CREATE TRIGGER update_qty after INSERT ON detail_pesan
-            FOR EACH ROW BEGIN
-            UPDATE barang
-            SET qty = qty + qty_pesan
-            WHERE
-            kd_brg = NEW.kd_brg;
-            END
-        ');
+        Schema::create('setting', function (Blueprint $table) {
+            $table->string('id_setting');
+            $table->string('kd_akun');
+            $table->string('nama_transaksi');
+            
+        });
     }
 
     /**
@@ -31,6 +28,6 @@ class TriggerTambah extends Migration
      */
     public function down()
     {
-        DB::unprepared('DROP TRIGGER update_qty');
+        Schema::dropIfExists('setting');
     }
 }

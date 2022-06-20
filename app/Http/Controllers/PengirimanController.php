@@ -9,9 +9,6 @@ class PengirimanController extends Controller
     public function index()
     {
 
-        return view(
-
-            'pengiriman.pengiriman'
-        );
+        return view('pengiriman.pengiriman');
     }
 }

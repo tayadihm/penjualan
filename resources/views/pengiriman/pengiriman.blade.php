@@ -5,7 +5,7 @@
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Transaksi Pengiriman</h1>
     </div>
-
+    <hr>
     <form action="" method="POST">
         @csrf
         <div class="card card-info">
@@ -16,42 +16,43 @@
                 <div class="card-body">
 
                     <div class="form-group row">
+                        <label for="no_kirim" class="col-sm-2 col-form-label">No Pengiriman</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" name="no_kirim" id="no_kirim">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="nm_cust" class="col-sm-2 col-form-label">Nama Customer</label>
+                        <div class="col-sm-4">
+                            <select name="nm_cust" id="cust select2" class="form-control" required>
+                                <option value="">Pilih</option>
+                                {{-- @foreach ($customer as $cust)
+                                    <option value="{{ $cust->idcust }}">{{ $cust->nm_cust }} - {{ $cust->nohp }}
+                                        - {{ $cust->email }} - {{ $cust->alamat }} </option>
+                                @endforeach --}}
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="tgl_kirim" class="col-sm-2 col-form-label">Tanggal Pengiriman</label>
+                        <div class="col-sm-4">
+                            <input type="date" class="form-control" name="tgl_kirim" id="tgl_kirim" placeholder="">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label">Alamat</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="" placeholder="">
-                        </div>
-
-                        <div align="right">
-                            <input type="search">
-                            <label class="col-form-label">No Do</label>
+                            <textarea type="text" class="form-control" name="alamat" id="alamat" placeholder=""></textarea>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <label for="" class="col-sm-2 col-form-label">Supir</label>
                         <div class="col-sm-4">
-                            <input type="text" class="form-control" id="" placeholder="">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label">Tanggal Order</label>
-                        <div class="col-sm-4">
-                            <input type="date" class="form-control" id="" placeholder="">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label">No DO</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="" placeholder="">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="" class="col-sm-2 col-form-label">Total Order</label>
-                        <div class="col-sm-4">
-                            <input type="text" class="form-control" id="" placeholder="">
+                            <input type="text" class="form-control" name="supir" id="supir" placeholder="">
                         </div>
                     </div>
 
@@ -59,7 +60,7 @@
 
             </form>
         </div>
-
+        
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <div class="card-body">
 
