@@ -10,7 +10,7 @@
     'locale' => 'en',
     'fallback_locale' => 'en',
     'faker_locale' => 'en_US',
-    'key' => 'base64:LuALVyjcG5JAnsWreE0BOK4YqlfrTHpsvI9E2DUCHPI=',
+    'key' => 'base64:Qy4Fdm54ipdIEgrYmC4tqbUE6dpVga+m9eIi6tW3bLk=',
     'cipher' => 'AES-256-CBC',
     'providers' => 
     array (
@@ -180,7 +180,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'F:\\REPO\\penjualan\\storage\\framework/cache/data',
+        'path' => 'C:\\xampp\\htdocs\\penjualan\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -344,12 +344,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'F:\\REPO\\penjualan\\storage\\app',
+        'root' => 'C:\\xampp\\htdocs\\penjualan\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'F:\\REPO\\penjualan\\storage\\app/public',
+        'root' => 'C:\\xampp\\htdocs\\penjualan\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -365,7 +365,7 @@
     ),
     'links' => 
     array (
-      'F:\\REPO\\penjualan\\public\\storage' => 'F:\\REPO\\penjualan\\storage\\app/public',
+      'C:\\xampp\\htdocs\\penjualan\\public\\storage' => 'C:\\xampp\\htdocs\\penjualan\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -399,13 +399,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'F:\\REPO\\penjualan\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\penjualan\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'F:\\REPO\\penjualan\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\penjualan\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -455,7 +455,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'F:\\REPO\\penjualan\\storage\\logs/laravel.log',
+        'path' => 'C:\\xampp\\htdocs\\penjualan\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -502,7 +502,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'F:\\REPO\\penjualan\\resources\\views/vendor/mail',
+        0 => 'C:\\xampp\\htdocs\\penjualan\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -632,7 +632,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'F:\\REPO\\penjualan\\storage\\framework/sessions',
+    'files' => 'C:\\xampp\\htdocs\\penjualan\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -695,9 +695,9 @@
   array (
     'paths' => 
     array (
-      0 => 'F:\\REPO\\penjualan\\resources\\views',
+      0 => 'C:\\xampp\\htdocs\\penjualan\\resources\\views',
     ),
-    'compiled' => 'F:\\REPO\\penjualan\\storage\\framework\\views',
+    'compiled' => 'C:\\xampp\\htdocs\\penjualan\\storage\\framework\\views',
     'expires' => true,
   ),
   'dompdf' => 
@@ -707,10 +707,10 @@
     'convert_entities' => true,
     'defines' => 
     array (
-      'font_dir' => 'F:\\REPO\\penjualan\\storage\\fonts',
-      'font_cache' => 'F:\\REPO\\penjualan\\storage\\fonts',
-      'temp_dir' => 'C:\\Users\\hiday\\AppData\\Local\\Temp',
-      'chroot' => 'F:\\REPO\\penjualan',
+      'font_dir' => 'C:\\xampp\\htdocs\\penjualan\\storage\\fonts',
+      'font_cache' => 'C:\\xampp\\htdocs\\penjualan\\storage\\fonts',
+      'temp_dir' => 'C:\\Users\\Arijal\\AppData\\Local\\Temp',
+      'chroot' => 'C:\\xampp\\htdocs\\penjualan',
       'enable_font_subsetting' => false,
       'pdf_backend' => 'CPDF',
       'default_media_type' => 'screen',
