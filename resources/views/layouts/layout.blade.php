@@ -100,7 +100,8 @@
                 <div id="collapsePages1" class="collapse" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item fas fa-arrow-circle-right" href="#"> Laporan Jurnal</a>
+                        <a class="collapse-item fas fa-arrow-circle-right" href="{{ route('laporan.index') }}">
+                            Laporan Jurnal</a>
                         <a class="collapse-item fas fa-arrow-circle-right" href="#"> Laporan Penjualan</a>
                     </div>
                 </div>

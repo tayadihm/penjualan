@@ -23,8 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['middleware' => ['role:marketing']], function () {
     Route::resource('/user', 'userController');
     Route::get('/user/hapus/{id}', 'userController@destroy');
-    Route::resource('/barang', 'barangController');
-    Route::get('/barang/hapus/{id}', 'barangController@destroy');
+    Route::resource('/barang', 'BarangController');
+    Route::get('/barang/hapus/{id}', 'BarangController@destroy');
+
     Route::resource('/customer', 'customerController');
     Route::get('/customer/hapus/{id}', 'customerController@destroy');
     Route::resource('/akun', 'akunController');
@@ -48,4 +49,12 @@ Route::group(['middleware' => ['role:marketing']], function () {
 
     //pengiriman
     Route::get('/pengiriman', 'PengirimanController@index')->name('pengiriman.pengiriman');
+
+
+    //laporan
+    Route::resource('/laporan', 'LaporanController');
+    Route::resource('/stok', 'LapStokController');
+    Route::get('/laporan/faktur/{invoice}', 'PembelianController@pdf')->name('cetak.order_pdf');
+    //laporan cetak
+    Route::get('/laporancetak/cetak_pdf', 'LaporanController@cetak_pdf');
 });
