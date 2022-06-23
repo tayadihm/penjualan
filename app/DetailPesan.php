@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class DetailPesan extends Model
 {
-    protected $primaryKey = 'no_psn';
     public $incrementing = false;
     protected $keyType = 'string';
     public $timestamps = false;
     protected $table = "detail_pesan";
     protected $fillable=['no_psn','kd_brg','nm_brg','qty_pesan','sub_total'];
+
+    public function pemesanan() {
+        return $this->hasMany('App\Pemesanan');
+    }
 }

@@ -12,7 +12,8 @@
 
             {{-- <input type="text" name="no_psn" value="{{ $formatnya }}" class="form-control" id="exampleFormControlInput1">
             <input type="hidden" name="no_jurnal" value="{{ $formatnyaj }}" class="form-control" --}}
-            <input type="text" name="no_psn" value="{{ $formatnya }}" class="form-control" id="exampleFormControlInput1" readonly>
+            <input type="text" name="no_psn" value="{{ $formatnya }}" class="form-control" id="exampleFormControlInput1"
+                readonly>
             {{-- <input type="hidden" name="no_jurnal" value="" class="form-control" id="exampleFormControlInput1"> --}}
 
         </div>
@@ -28,7 +29,7 @@
             <select name="nm_cust" id="cust select2" class="form-control" width="100%" required>
                 <option value="">Pilih</option>
                 @foreach ($customer as $cust)
-                    <option value="{{ $cust->idcust }}">{{ $cust->nm_cust }} - {{ $cust->nohp }}
+                    <option value="{{ $cust->nm_cust }}">{{ $cust->nm_cust }} - {{ $cust->nohp }}
                         - {{ $cust->email }} - {{ $cust->alamat }} </option>
                 @endforeach
             </select>
@@ -40,7 +41,7 @@
                 id="exampleFormControlInput1" required>
         </div>
 
-        <div class="card-header py-3" align="right">
+        <div class="card-header py-3 d-flex justify-content-end">
             <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm" data-toggle="modal"
                 data-target="#exampleModalScrollable">
                 <i class="fas fa-plus fa-sm text-white-50"></i> Tambah Barang
@@ -100,6 +101,76 @@
 
         </div>
     </form>
+
+    <div class="card">
+        <div class="card-body">
+            <div class="card-title">Data Pembayaran</div>
+
+            <div class="table-responsive mb-3">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">No Pemesanan</th>
+                            <th scope="col">Customer</th>
+                            <th scope="col">Tanggal Pemesanan</th>
+                            <th scope="col">Tanggal Jatuh Tempo</th>
+                            <th scope="col">Total</th>
+                            <th scope="col"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <?php $no = 1; ?>
+                        @foreach ($tampil as $value)
+                            <tr>
+                                <td>{{ $no }}</td>
+                                <td>{{ $value->no_psn }}</td>
+                                <td>{{ $value->nm_cust }}</td>
+                                <td>{{ $value->tgl_psn }}</td>
+                                <td>{{ $value->tgl_tempo }}</td>
+                                <td>{{ number_format($value->total) }}</td>
+                                <td>
+                                    <div class="hide-menu">
+                                        <a href="javascript:void(0)" class="text-dark" id="actiondd" role="button"
+                                            data-toggle="dropdown">
+                                            <i class="mdi mdi-dots-vertical"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actiondd">
+                                            <a class="dropdown-item"
+                                                href="{{ url('dashboard/pembayaran/' . $value->id . '/edit') }}"><i
+                                                    class="ti-pencil"></i> Edit </a>
+                                            <form method="post" action="{{ url('dashboard/pembayaran', $value->id) }}"
+                                                id="delete{{ $value->id }}">
+                                                @csrf
+                                                @method('delete')
+
+                                                <button type="button" class="dropdown-item"
+                                                    onclick="deleteData({{ $value->id }})">
+                                                    <i class="ti-trash"></i> Hapus
+                                                </button>
+
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php $no++; ?>
+                        @endforeach
+                    </tbody>
+                </table><br>
+                {{-- Pagination --}}
+                <div class="d-flex justify-content-end">
+                    {!! $tampil->links() !!}
+                </div>
+                @if (count($tampil) == 0)
+                    <div class="text-center">Tidak ada data!</div>
+                @endif
+            </div>
+        </div>
+    </div>
+
     <div class="modal fade" id="exampleModalScrollable" tabindex="-1" role="dialog"
         aria-labelledby="exampleModalScrollableTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable" role="document">

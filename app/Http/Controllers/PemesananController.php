@@ -31,6 +31,8 @@ class PemesananController extends Controller
         $noj = 1;
         $formatnyaj=sprintf("%03s", abs((int)$noUrutAkhirj + 1)). '/' . $AWALJurnal .'/' . $bulanRomawij[date('n')] .'/' . date('Y');
 
+        $tampil = Pemesanan::orderBy('no_psn', 'DESC')->paginate(5);
+
         return view(
             'pemesanan.pemesanan'
             ,
@@ -40,7 +42,8 @@ class PemesananController extends Controller
                 'customer' => $customer,
                 'temp_pemesanan' => $temp_pesan,
                 'formatnya' => $formatnya,
-                'formatnyaj' => $formatnyaj
+                'formatnyaj' => $formatnyaj,
+                'tampil' => $tampil
             ]
         );
     }

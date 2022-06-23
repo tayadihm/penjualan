@@ -52,7 +52,8 @@ Route::group(['middleware' => ['role:marketing']], function () {
 
 
     //laporan
-    Route::resource('/laporan', 'LaporanController');
+    Route::get('/laporan', 'LaporanController@index')->name('laporan');
+    Route::get('/laporan-penjualan', 'LaporanController@reportPenjualan')->name('laporan-penjualan');
     Route::resource('/stok', 'LapStokController');
     Route::get('/laporan/faktur/{invoice}', 'PembelianController@pdf')->name('cetak.order_pdf');
     //laporan cetak

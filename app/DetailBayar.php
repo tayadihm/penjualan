@@ -11,5 +11,5 @@ class DetailBayar extends Model
     protected $keyType = 'string';
     public $timestamps = false;
     protected $table = "detail_bayar";
-    protected $fillable=['no_psn','no_bayar','tgl_bayar','jml_bayar',];
+    protected $fillable=['no_bayar','kd_brg','qty_bayar','sub_bayar',];
 }

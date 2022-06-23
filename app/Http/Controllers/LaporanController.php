@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Laporan;
+use App\Customer;
+use App\Pemesanan;
+use App\DetailPesan;
 use PDF;
 use DB;
 
@@ -35,4 +38,26 @@ class LaporanController extends Controller
             return $pdf->stream();
         }
     }
+
+    public function reportPenjualan() 
+    {
+        $pemesanan = Pemesanan::all();
+        $detail = DetailPesan::all();
+        // dd($customer);
+        return view('laporan.laporan-penjualan',compact('pemesanan','detail'));
+    }
+
+    // public function printPenjualan($id) {
+    //     $decrypted = Crypt::decryptString($id); 
+    //     $customer = Customer::all();
+    //     $supplier = DB::table('supplier')->get(); 
+    //     $pemesanan = DB::table('pemesanan')->where('no_pesan',$decrypted)
+    //                 ->get(); 
+    //     $pdf = PDF::loadView('laporan.faktur',
+    //                 ['detail'=>$detail,
+    //                 'order'=>$pemesanan,
+    //                 'supp'=>$supplier,
+    //                 'noorder'=>$decrypted]);
+    //      return $pdf->stream();
+    // }
 }

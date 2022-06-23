@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Contracts\Encryption\DecryptException;
 use Illuminate\Support\Facades\Crypt;
+use Carbon\Carbon;
 use App\Pemesanan;
 use App\Pembayaran;
 use App\DetailBayar;
@@ -12,14 +13,14 @@ use App\Jurnal;
 use DB;
 use Alert;
 use PDF;
-use Carbon\Carbon;
 
 class PembayaranController extends Controller
 {
     public function index()
     {
         $pemesanan = Pemesanan::all();
-        return view('pembayaran.pembayaran', compact('pemesanan'));
+
+        return view('pembayaran.pembayaran',compact('pemesanan'));
     }
 
     public function edit($id)
@@ -40,7 +41,7 @@ class PembayaranController extends Controller
         $detail = DB::table('tampil_pemesanan')->where('no_pesan',$decrypted)->get(); 
         $pemesanan = DB::table('pemesanan')->where('no_psn',$decrypted)->get(); 
         $akunkas = DB::table('setting')->where('nama_transaksi','Kas')->get(); 
-        $akunpembayaran = DB::table('setting')->where('nama_transaksi','Pembayaran')->get(); 
+        $akunpembayaran = DB::table('setting')->where('nama_transaksi','Pembayaran')->get();
         
         return view('pembayaran.bayar',['detail'=>$detail,'format'=>$format,'no_psn'=>$decrypted,'pemesanan'=>$pemesanan,'formatj'=>$formatj,'kas'=>$akunkas,'pembayaran'=>$akunpembayaran]);
     }
@@ -53,7 +54,7 @@ class PembayaranController extends Controller
         } else {
             //Simpan ke table pembayaran
             $pembayaran = new Pembayaran;
-            $pembayaran->no_bayar = $request->no_bayar;
+            $pembayaran->no_bayar = $request->no_faktur;
             $pembayaran->tgl_bayar = Carbon::now('Asia/Jakarta');
             $pembayaran->no_faktur = $request->no_faktur;
             $pembayaran->no_psn = $request->no_pesan;
@@ -61,38 +62,42 @@ class PembayaranController extends Controller
             $pembayaran->jml_bayar = $request->total;
             $pembayaran->save();
 
+            
+
             //SIMPAN DATA KE TABEL DETAIL PEMBAYARAN 
-            // $no_bayar = $request->no_bayar; 
-            // $no_psn = $request->no_psn; 
-            // $tgl_bayar = $request->tgl_bayar;
-            // $jml_bayar = $request->jml_bayar;
-            // foreach($no_bayar as $key => $no) {
-            //      $input['no_bayar'] = $request->no_bayar; 
-            //      $input['no_psn'] = $no_psn[$key]; 
-            //      $input['tgl_bayar'] = $tgl_bayar[$key];
-            //      $input['jml_bayar'] = $jml_bayar[$key];
-            //      DetailBayar::insert($input); 
-            //     }
+            $kd_brg = $request->kd_brg;
+            $qty_bayar = $request->qty_bayar; 
+            $sub_bayar = $request->sub_bayar;
+            foreach($kd_brg as $key => $no)
+             {
+                 $input['no_bayar'] = $request->no_faktur; 
+                 $input['kd_brg'] = $kd_brg[$key]; 
+                 $input['qty_bayar'] = $qty_bayar[$key];
+                 $input['sub_bayar'] = $sub_bayar[$key];
+                 DetailBayar::insert($input); 
+                }
 
-            // //SIMPAN ke table jurnal bagian debet 
-            // $tambah_jurnaldebet=new \App\Jurnal; 
-            // $tambah_jurnaldebet->no_jurnal = $request->no_jurnal; 
-            // $tambah_jurnaldebet->keterangan = 'Pembayaran'; 
-            // $tambah_jurnaldebet->tgl_jurnal = $request->tgl; 
-            // $tambah_jurnaldebet->no_akun = $request->pembelian; 
-            // $tambah_jurnaldebet->debet = $request->total; 
-            // $tambah_jurnaldebet->kredit = '0'; 
-            // $tambah_jurnaldebet->save();
+            //SIMPAN ke table jurnal bagian debet 
+            $tambah_jurnaldebet=new \App\Jurnal; 
+            $tambah_jurnaldebet->no_jurnal = $request->no_jurnal;
+            $tambah_jurnaldebet->tgl_jurnal = Carbon::Now('Asia/Jakarta'); 
+            $tambah_jurnaldebet->no_psn = $request->no_pesan;
+            $tambah_jurnaldebet->tgl_psn = $request->tgl_psn;
+            $tambah_jurnaldebet->kd_akun = $request->kd_akun; 
+            $tambah_jurnaldebet->nm_akun = $request->nm_akun; 
+            $tambah_jurnaldebet->debet = $request->total; 
+            $tambah_jurnaldebet->kredit = '0'; 
+            $tambah_jurnaldebet->save();
 
-            // //SIMPAN ke table jurnal bagian kredit 
-            // $tambah_jurnalkredit=new \App\Jurnal; 
-            // $tambah_jurnalkredit->no_jurnal = $request->no_jurnal; 
-            // $tambah_jurnalkredit->keterangan = 'Kas'; 
-            // $tambah_jurnalkredit->tgl_jurnal = $request->tgl; 
-            // $tambah_jurnalkredit->no_akun = $request->akun; 
-            // $tambah_jurnalkredit->debet ='0'; 
-            // $tambah_jurnalkredit->kredit = $request->total; 
-            // $tambah_jurnalkredit->save(); 
+            //SIMPAN ke table jurnal bagian kredit 
+            $tambah_jurnalkredit=new \App\Jurnal; 
+            $tambah_jurnalkredit->no_jurnal = $request->no_jurnal; 
+            $tambah_jurnalkredit->keterangan = 'Kas'; 
+            $tambah_jurnalkredit->tgl_jurnal = $request->tgl; 
+            $tambah_jurnalkredit->no_akun = $request->akun; 
+            $tambah_jurnalkredit->debet ='0'; 
+            $tambah_jurnalkredit->kredit = $request->total; 
+            $tambah_jurnalkredit->save(); 
             Alert::success('Pesan ','Data berhasil disimpan'); 
             
             return redirect('/pembayaran');

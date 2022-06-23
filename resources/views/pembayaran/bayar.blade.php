@@ -11,14 +11,16 @@
         <div class="form-group col-sm-4">
             <label for="exampleFormControlInput1">No Pembayaran</label>
             @foreach ($kas as $ks)
-                <input type="hidden" name="akun" value="{{ $ks->kd_akun }}" class="form-control"
+                <input type="hidden" name="kd_akun" value="{{ $ks->kd_akun }}" class="form-control"
                     id="exampleFormControlInput1">
             @endforeach
-            <input type="text" name="no_bayar" value="{{ $format }}" class="form-control"
-                id="exampleFormControlInput1">
+            @foreach ($pembayaran as $byr)
+                <input type="hidden" name="pembayaran" value="{{ $byr->kd_akun }}" class="form-control"
+                    id="exampleFormControlInput1">
+            @endforeach
             <input type="hidden" name="no_jurnal" value="{{ $formatj }}" class="form-control"
                 id="exampleFormControlInput1">
-            <input type="hidden" name="no_faktur" value="{{ $format }}" class="form-control"
+            <input type="text" name="no_faktur" value="{{ $format }}" class="form-control"
                 id="exampleFormControlInput1">
         </div>
         @foreach ($pemesanan as $psn)
@@ -57,13 +59,16 @@
                             @php($total = 0)
                             @foreach ($detail as $temp)
                                 <tr>
-                                    <td><input name="kd_brg" class="form-control" type="hidden"
-                                            value="{{ $temp->kd_brg }}" readonly>{{ $temp->kd_brg }}</td>
-                                    <td><input name="nm_brg" class="form-control" type="hidden"
+                                    <td><input name="no_bayar[]" class="form-control" type="hidden"
+                                            value="{{ $temp->no_pesan }}" readonly>
+                                        <input name="kd_brg[]" class="form-control" type="hidden"
+                                            value="{{ $temp->kd_brg }}" readonly>{{ $temp->kd_brg }}
+                                    </td>
+                                    <td><input name="nm_brg[]" class="form-control" type="hidden"
                                             value="{{ $temp->nm_brg }}" readonly>{{ $temp->nm_brg }}</td>
-                                    <td><input name="qty_pesan" class="form-control" type="hidden"
+                                    <td><input name="qty_bayar[]" class="form-control" type="hidden"
                                             value="{{ $temp->qty_pesan }}" readonly>{{ $temp->qty_pesan }}</td>
-                                    <td> <input name="sub_total" class="form-control" type="hidden"
+                                    <td> <input name="sub_bayar[]" class="form-control" type="hidden"
                                             value="{{ $temp->subtotal }}"
                                             readonly>{{ number_format($temp->subtotal) }}</td>
                                     <td align="center">
@@ -80,7 +85,7 @@
 
                                 <td>
                                     <input name="total" class="form-control" type="hidden"
-                                        value="{{ $total }}">Total {{ number_format($total) }}</a>
+                                        value="{{ $total }}">Total {{ number_format($total) }}
                                 </td>
                             </tr>
                         </tbody>
