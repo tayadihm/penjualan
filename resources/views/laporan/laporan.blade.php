@@ -1,10 +1,12 @@
 @extends('layouts.layout')
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-left">
+            <div class="d-sm-flex align-items-left justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Laporan Jurnal Umum</h1>
+            </div>
             <div class="col-md-12">
                 <div class="card">
-                    <div class="cardheader">Laporan Transaksi Jurnal</div>
                     <div class="card-body">
                         <form action="/laporan/cetak" method="PUT" target="_blank">
                             @csrf

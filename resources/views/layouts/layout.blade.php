@@ -83,9 +83,9 @@
 
                         <a class="collapse-item" href="{{ route('pemesanan.transaksi') }}">Pemesanan</a>
 
-                        <a class="collapse-item" href="{{ route('pembayaran.pembayaran') }}">Pembayaran</a>
-
                         <a class="collapse-item" href="{{ route('pengiriman.pengiriman') }}">Pengiriman</a>
+                        
+                        <a class="collapse-item" href="{{ route('pembayaran.pembayaran') }}">Pembayaran</a>
                     </div>
                 </div>
             </li>
@@ -100,9 +100,10 @@
                 <div id="collapsePages1" class="collapse" aria-labelledby="headingPages"
                     data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item fas fa-arrow-circle-right" href="{{ route('laporan') }}">
+                        <a class="collapse-item fas fa-arrow-circle-right" href="{{ route('laporan-jurnal') }}">
                             Laporan Jurnal</a>
-                        <a class="collapse-item fas fa-arrow-circle-right" href="{{ route('laporan-penjualan') }}"> Laporan Penjualan</a>
+                        <a class="collapse-item fas fa-arrow-circle-right" href="{{ route('laporan-penjualan') }}">
+                            Laporan Penjualan</a>
                     </div>
                 </div>
             </li>

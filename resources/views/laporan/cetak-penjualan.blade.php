@@ -15,35 +15,33 @@
 
 <body>
     <table class="table table-borderless" width="100%" align="center">
-        <tr align="center">
-            <td>
-                <h4>Laporan Jurnal Umum</h4>
-                <h6>Tanggal Jurnal : {{ $jurnal->tgl_jurnal }}</h6>
-                <h6>Nomor Jurnal : {{ $jurnal->no_jurnal }}</h6>
+        <tr>
+            <td align="center">
+                <h5>Laporan Penjualan<br>PT. Hee Jung</h5>
             </td>
         </tr>
     </table>
     <table class="table" width="100%" align="center">
-        <thead class="thead-light">
+        <thead>
             <tr>
-                <th width="10%">Tanggal Jurnal</th>
                 <th width="10%">Nomor Pemesanan</th>
-                <th width="5%">Kode Akun</th>
-                <th width="7%">Nama Akun</th>
-                <th width="5%">Debet</th>
-                <th width="5%">Kredit</th>
+                <th width="15%">Nama Customer</th>
+                <th width="5%">Kode Barang</th>
+                <th width="5%">Nama Barang</th>
+                <th width="5%">Qty Barang</th>
+                <th width="5%">Total</th>
             </tr>
         </thead>
         <tbody>
             @php $i=1 @endphp
-            @foreach ($laporan as $bb)
+            @foreach ($detail as $bb)
                 <tr>
-                    <td>{{ $bb->tgl_psn }}</td>
                     <td>{{ $bb->no_psn }}</td>
-                    <td>{{ $bb->kd_akun }}</td>
-                    <td>{{ $bb->nm_akun }}</td>
-                    <td>{{ number_format($bb->debet) }}</td>
-                    <td>{{ number_format($bb->kredit) }}</td>
+                    <td>{{ $bb->nm_cust }}</td>
+                    <td>{{ $bb->kd_brg }}</td>
+                    <td>{{ $bb->nm_brg }}</td>
+                    <td>{{ $bb->qty_pesan }}</td>
+                    <td>{{ number_format($bb->sub_total) }}</td>
                 </tr>
             @endforeach
         </tbody>

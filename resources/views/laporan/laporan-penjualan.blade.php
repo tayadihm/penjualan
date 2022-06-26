@@ -1,51 +1,41 @@
 @extends('layouts.layout')
 @section('content')
     <div class="container">
-        <div class="row justify-content-center">
+        <div class="row justify-content-left">
+            <div class="d-sm-flex align-items-left justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Laporan Penjualan</h1>
+            </div>
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body">
-                        <div class="card-title mb-4"><h3>Laporan Penjualan</h3></div>
-                        <div class="table-responsive mb-3">
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">No Pemesanan</th>
-                                        <th scope="col">Nama Customer</th>
-                                        <th scope="col">Kode Barang</th>
-                                        <th scope="col">Nama Barang</th>
-                                        <th scope="col">Qty</th>
-                                        <th scope="col">Total</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                    <?php $no = 1; ?>
-                                    @foreach ($detail as $value)
-                                        <tr>
-                                            <td>{{ $no }}</td>
-                                            <td>{{ $value->no_psn }}</td>
-                                            <td>{{ $value->nm_cust }}</td>
-                                            <td>{{ $value->kd_brg }}</td>
-                                            <td>{{ $value->nm_brg }}</td>
-                                            <td>{{ $value->qty_pesan }}</td>
-                                            <td>{{ number_format($value->sub_total) }}</td>
-                                        </tr>
-                                        <?php $no++; ?>
-                                    @endforeach
-                                </tbody>
-                            </table><br>
-                            {{-- Pagination --}}
-                            {{-- <div class="d-flex justify-content-end">
-                                {!! $tampil->links() !!}
-                            </div>
-                            @if (count($tampil) == 0)
-                                <div class="text-center">Tidak ada data!</div>
-                            @endif --}}
-                        </div>
-
+                        <form action="/laporan-penjualan/cetak" method="PUT" target="_blank">
+                            @csrf
+                            <fieldset>
+                                <div class="form-group row">
+                                    <div class="col-md-4">
+                                        <label for="klasifikasi">Periode Jurnal</label>
+                                        <input id="jenis" type="hidden" name="jenis" value="bukubesar"
+                                            class="form-control">
+                                        <select id="periode" name="periode"class="form-control">
+                                            <option value="">--Pilih Periode Laporan--</option>
+                                            <option value="All">Semua</option>
+                                            <option value="periode">Per Periode</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="no_hp">Tanggal Awal</label>
+                                        <input id="tglawal" type="date" name="tglawal" class="form-control">
+                                    </div>
+                                    <div class="col-md-3">
+                                        <label for="no_hp">Tanggal Akhir</label>
+                                        <input id="tglakhir" type="date" name="tglakhir" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <input type="submit" class="btn btn-success btnsend" value="Cetak">
+                                </div>
+                            </fieldset>
+                        </form>
                     </div>
                 </div>
             </div>

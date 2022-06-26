@@ -13,6 +13,6 @@ class DetailPesan extends Model
     protected $fillable=['no_psn','kd_brg','nm_brg','qty_pesan','sub_total'];
 
     public function pemesanan() {
-        return $this->hasMany('App\Pemesanan');
+        return $this->hasOne('App\Pemesanan');
     }
 }

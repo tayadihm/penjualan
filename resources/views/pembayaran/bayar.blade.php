@@ -3,7 +3,7 @@
     @include('sweetalert::alert')
 
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h3 class="mb-0 text-gray-800">Transaksi Pembayaran</h3>
+        <h3 class="mb-0 text-gray-800">Pembayaran</h3>
     </div>
     <hr>
     <form action="/pembayaran/store" method="POST">
@@ -11,7 +11,7 @@
         <div class="form-group col-sm-4">
             <label for="exampleFormControlInput1">No Pembayaran</label>
             @foreach ($kas as $ks)
-                <input type="hidden" name="kd_akun" value="{{ $ks->kd_akun }}" class="form-control"
+                <input type="hidden" name="kas" value="{{ $ks->kd_akun }}" class="form-control"
                     id="exampleFormControlInput1">
             @endforeach
             @foreach ($pembayaran as $byr)
@@ -21,23 +21,28 @@
             <input type="hidden" name="no_jurnal" value="{{ $formatj }}" class="form-control"
                 id="exampleFormControlInput1">
             <input type="text" name="no_faktur" value="{{ $format }}" class="form-control"
-                id="exampleFormControlInput1">
+                id="exampleFormControlInput1" readonly>
         </div>
         @foreach ($pemesanan as $psn)
             <div class="form-group col-sm-4">
                 <label for="exampleFormControlInput1">No Pemesanan</label>
                 <input type="text" name="no_pesan" value="{{ $psn->no_psn }}" class="form-control"
-                    id="exampleFormControlInput1">
+                    id="exampleFormControlInput1" readonly>
             </div>
             <div class="form-group col-sm-4">
                 <label for="exampleFormControlInput1">Tanggal Pemesanan</label>
                 <input type="text" min="1" name="tgl_psn" id="tgl_psn" class="form-control"
-                    id="exampleFormControlInput1" value="{{ $psn->tgl_psn }}" required>
+                    id="exampleFormControlInput1" value="{{ $psn->tgl_psn }}" required readonly>
             </div>
             <div class="form-group col-sm-4">
                 <label for="exampleFormControlInput1">Tanggal Jatuh Tempo</label>
                 <input type="text" min="1" name="tgl_tempo" id="tgl_tempo" class="form-control"
-                    id="exampleFormControlInput1" value="{{ $psn->tgl_tempo }}" required>
+                    id="exampleFormControlInput1" value="{{ $psn->tgl_tempo }}" required readonly>
+            </div>
+            <div class="form-group col-sm-4">
+                <label for="exampleFormControlInput1">Tanggal Pembayaran</label>
+                <input type="date" min="1" name="tgl_bayar" id="tgl_bayar" class="form-control"
+                    id="exampleFormControlInput1" required>
             </div>
         @endforeach
 
@@ -69,8 +74,8 @@
                                     <td><input name="qty_bayar[]" class="form-control" type="hidden"
                                             value="{{ $temp->qty_pesan }}" readonly>{{ $temp->qty_pesan }}</td>
                                     <td> <input name="sub_bayar[]" class="form-control" type="hidden"
-                                            value="{{ $temp->subtotal }}"
-                                            readonly>{{ number_format($temp->subtotal) }}</td>
+                                            value="{{ $temp->sub_total }}"
+                                            readonly>{{ number_format($temp->sub_total) }}</td>
                                     <td align="center">
                                         <a href="/transaksi/hapus/{{ $temp->kd_brg }}"
                                             onclick="return confirm('Yakin Ingin menghapus data?')"
@@ -78,7 +83,7 @@
                                             <i class="fas fa-trash-alt fa-sm text-white-50"></i> Hapus</a>
                                     </td>
                                 </tr>
-                                @php($total += $temp->subtotal)
+                                @php($total += $temp->sub_total)
                             @endforeach
                             <tr>
                                 <td colspan="3"><b>Total</b></td>

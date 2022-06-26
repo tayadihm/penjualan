@@ -49,12 +49,14 @@ Route::group(['middleware' => ['role:marketing']], function () {
 
     //pengiriman
     Route::get('/pengiriman', 'PengirimanController@index')->name('pengiriman.pengiriman');
+    Route::post('/pengiriman/store', 'PengirimanController@store');
 
 
     //laporan
-    Route::get('/laporan', 'LaporanController@index')->name('laporan');
+    Route::get('/laporan', 'LaporanController@index')->name('laporan-jurnal');
+    Route::get('/laporan/cetak', 'LaporanController@show')->name('laporan-cetak');
     Route::get('/laporan-penjualan', 'LaporanController@reportPenjualan')->name('laporan-penjualan');
-    Route::resource('/stok', 'LapStokController');
+    Route::get('/laporan-penjualan/cetak', 'LaporanController@cetakPenjualan')->name('cetak-laporan-penjualan');
     Route::get('/laporan/faktur/{invoice}', 'PembelianController@pdf')->name('cetak.order_pdf');
     //laporan cetak
     Route::get('/laporancetak/cetak_pdf', 'LaporanController@cetak_pdf');

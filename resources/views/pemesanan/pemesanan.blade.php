@@ -29,8 +29,7 @@
             <select name="nm_cust" id="cust select2" class="form-control" width="100%" required>
                 <option value="">Pilih</option>
                 @foreach ($customer as $cust)
-                    <option value="{{ $cust->nm_cust }}">{{ $cust->nm_cust }} - {{ $cust->nohp }}
-                        - {{ $cust->email }} - {{ $cust->alamat }} </option>
+                    <option value="{{ $cust->nm_cust }}">{{ $cust->nm_cust }} - {{ $cust->alamat }} </option>
                 @endforeach
             </select>
         </div>
@@ -104,7 +103,7 @@
 
     <div class="card">
         <div class="card-body">
-            <div class="card-title">Data Pembayaran</div>
+            <div class="card-title">Data Pemesanan</div>
 
             <div class="table-responsive mb-3">
                 <table class="table">

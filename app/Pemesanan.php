@@ -14,6 +14,6 @@ class Pemesanan extends Model
     protected $fillable=['no_psn','tgl_psn','nm_cust','tgl_tempo' , 'total'];
 
     public function detail() {
-        return $this->belongsTo('App\DetailPesan');
+        return $this->hasMany('App\DetailPesan');
     }
 }

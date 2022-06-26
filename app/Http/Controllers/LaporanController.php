@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Laporan;
 use App\Customer;
 use App\Pemesanan;
 use App\DetailPesan;
+use App\Jurnal;
 use PDF;
 use DB;
 
@@ -19,45 +21,70 @@ class LaporanController extends Controller
 
     public function show(Request $request)
     {
+        
         $periode = $request->get('periode');
         if ($periode == 'All') {
-            $bb = \App\Laporan::All();
+            $tglawal = $request->get('tglawal');
+            $tglakhir = $request->get('tglakhir');
+            $bb = \App\Jurnal::All();
+            $jurnal = Jurnal::first();
             $akun = \App\Akun::All();
-            $pdf = PDF::loadview('laporan.cetak', ['laporan' => $bb, 'akun' => $akun])->setPaper('A4', 'landscape');
+            $pdf = PDF::loadview('laporan.cetak', ['tglawal' => $tglawal,'tglakhir' => $tglakhir, 'laporan' => $bb, 'akun' => $akun, 'jurnal' => $jurnal])->setPaper('A4', 'landscape');
             return $pdf->stream();
         } elseif ($periode == 'periode') {
             $tglawal = $request->get('tglawal');
             $tglakhir = $request->get('tglakhir');
+            $jurnal = Jurnal::first();
             $akun = \App\Akun::All();
             $bb = DB::table('jurnal')
-                ->whereBetween('tgl_jurnal', [$tglawal, $tglakhir])
-                ->orderby('tgl_jurnal', 'ASC')
+                ->whereBetween('tgl_psn', [$tglawal, $tglakhir])
+                ->orderby('tgl_psn', 'ASC')
                 ->get();
 
-            $pdf = PDF::loadview('laporan.cetak', ['laporan' => $bb, 'akun' => $akun])->setPaper('A4', 'landscape');
+            $pdf = PDF::loadview('laporan.cetak', [
+                'laporan' => $bb, 
+                'akun' => $akun, 
+                'jurnal' => $jurnal, 
+                'tglawal' => $tglawal,
+                'tglakhir' => $tglakhir
+                ])->setPaper('A4', 'landscape');
             return $pdf->stream();
         }
     }
 
     public function reportPenjualan() 
     {
-        $pemesanan = Pemesanan::all();
-        $detail = DetailPesan::all();
-        // dd($customer);
-        return view('laporan.laporan-penjualan',compact('pemesanan','detail'));
+        return view('laporan.laporan-penjualan');
     }
 
-    // public function printPenjualan($id) {
-    //     $decrypted = Crypt::decryptString($id); 
-    //     $customer = Customer::all();
-    //     $supplier = DB::table('supplier')->get(); 
-    //     $pemesanan = DB::table('pemesanan')->where('no_pesan',$decrypted)
-    //                 ->get(); 
-    //     $pdf = PDF::loadView('laporan.faktur',
-    //                 ['detail'=>$detail,
-    //                 'order'=>$pemesanan,
-    //                 'supp'=>$supplier,
-    //                 'noorder'=>$decrypted]);
-    //      return $pdf->stream();
-    // }
+    public function cetakPenjualan(Request $request)
+   { 
+        $periode = $request->get('periode');
+        if ($periode == 'All') {
+            $pemesanan = Pemesanan::all();
+            $detail = DetailPesan::all();
+            $customer = Customer::all();
+            $pdf = PDF::loadView('laporan.cetak-penjualan', [
+                    'detail'=>$detail,
+                    'laporan'=>$pemesanan,
+                    'customer'=>$customer
+                ]); 
+            return $pdf->stream();
+        } elseif ($periode == 'periode') {
+            $tglawal = $request->get('tglawal');
+            $tglakhir = $request->get('tglakhir');
+            $detail = DB::table('detail_pesan')
+                        ->whereBetween('tgl_psn', [$tglawal, $tglakhir])
+                        ->orderBy('tgl_psn','ASC')
+                        ->get();
+
+            $pdf = PDF::loadView('laporan.cetak-penjualan', [
+                'detail' => $detail,
+                'tglawal' => $tglawal,
+                'tglakhir' => $tglakhir
+            ])->setPaper('A4','landscape');
+        return $pdf->stream();
+        }
+        
+    }
 }

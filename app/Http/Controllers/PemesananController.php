@@ -25,11 +25,11 @@ class PemesananController extends Controller
         $no = 1;
         $formatnya = sprintf("%03s", abs((int)$noUrutAkhir + 1)) . '/' . $AWAL . '/' . $bulanRomawi[date('n')] . '/' . date('Y');
         // No otomatis untuk jurnal
-        $AWALJurnal = 'JRU';
-        $bulanRomawij = array("", "I","II","III", "IV", "V","VI","VII","VIII","IX","X", "XI","XII");
-        $noUrutAkhirj = \App\Jurnal::max('no_jurnal');
-        $noj = 1;
-        $formatnyaj=sprintf("%03s", abs((int)$noUrutAkhirj + 1)). '/' . $AWALJurnal .'/' . $bulanRomawij[date('n')] .'/' . date('Y');
+        // $AWALJurnal = 'JRU';
+        // $bulanRomawij = array("", "I","II","III", "IV", "V","VI","VII","VIII","IX","X", "XI","XII");
+        // $noUrutAkhirj = \App\Jurnal::max('no_jurnal');
+        // $noj = 1;
+        // $formatnyaj=sprintf("%03s", abs((int)$noUrutAkhirj + 1)). '/' . $AWALJurnal .'/' . $bulanRomawij[date('n')] .'/' . date('Y');
 
         $tampil = Pemesanan::orderBy('no_psn', 'DESC')->paginate(5);
 
@@ -42,7 +42,6 @@ class PemesananController extends Controller
                 'customer' => $customer,
                 'temp_pemesanan' => $temp_pesan,
                 'formatnya' => $formatnya,
-                'formatnyaj' => $formatnyaj,
                 'tampil' => $tampil
             ]
         );
@@ -55,7 +54,8 @@ class PemesananController extends Controller
 
     public function store(Request $request)
     {
-        //Validasi jika barang sudah ada paada tabel temporari maka QTY akan di edit
+        //Validasi jika barang sudah ada pada tabel temporari maka QTY akan di edit
+        
         if (Temp_pemesanan::where('kd_brg', $request->brg)->exists()) {
             Alert::warning('Barang sudah ada.. QTY akan terupdate ?');
             Temp_pemesanan::where('kd_brg', $request->brg)
