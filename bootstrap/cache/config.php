@@ -181,7 +181,7 @@
       'file' => 
       array (
         'driver' => 'file',
-        'path' => 'F:\\REPO\\penjualan\\storage\\framework/cache/data',
+        'path' => 'F:\\REPO\\penjualanta\\storage\\framework/cache/data',
       ),
       'memcached' => 
       array (
@@ -256,7 +256,7 @@
       array (
         'driver' => 'sqlite',
         'url' => NULL,
-        'database' => 'penjualan',
+        'database' => 'penjualanta',
         'prefix' => '',
         'foreign_key_constraints' => true,
       ),
@@ -266,7 +266,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'penjualan',
+        'database' => 'penjualanta',
         'username' => 'root',
         'password' => '',
         'unix_socket' => '',
@@ -274,7 +274,7 @@
         'collation' => 'utf8mb4_unicode_ci',
         'prefix' => '',
         'prefix_indexes' => true,
-        'strict' => true,
+        'strict' => false,
         'engine' => NULL,
         'options' => 
         array (
@@ -286,7 +286,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'penjualan',
+        'database' => 'penjualanta',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -301,7 +301,7 @@
         'url' => NULL,
         'host' => '127.0.0.1',
         'port' => '3306',
-        'database' => 'penjualan',
+        'database' => 'penjualanta',
         'username' => 'root',
         'password' => '',
         'charset' => 'utf8',
@@ -395,12 +395,12 @@
       'local' => 
       array (
         'driver' => 'local',
-        'root' => 'F:\\REPO\\penjualan\\storage\\app',
+        'root' => 'F:\\REPO\\penjualanta\\storage\\app',
       ),
       'public' => 
       array (
         'driver' => 'local',
-        'root' => 'F:\\REPO\\penjualan\\storage\\app/public',
+        'root' => 'F:\\REPO\\penjualanta\\storage\\app/public',
         'url' => 'http://localhost/storage',
         'visibility' => 'public',
       ),
@@ -416,7 +416,7 @@
     ),
     'links' => 
     array (
-      'F:\\REPO\\penjualan\\public\\storage' => 'F:\\REPO\\penjualan\\storage\\app/public',
+      'F:\\REPO\\penjualanta\\public\\storage' => 'F:\\REPO\\penjualanta\\storage\\app/public',
     ),
   ),
   'hashing' => 
@@ -450,13 +450,13 @@
       'single' => 
       array (
         'driver' => 'single',
-        'path' => 'F:\\REPO\\penjualan\\storage\\logs/laravel.log',
+        'path' => 'F:\\REPO\\penjualanta\\storage\\logs/laravel.log',
         'level' => 'debug',
       ),
       'daily' => 
       array (
         'driver' => 'daily',
-        'path' => 'F:\\REPO\\penjualan\\storage\\logs/laravel.log',
+        'path' => 'F:\\REPO\\penjualanta\\storage\\logs/laravel.log',
         'level' => 'debug',
         'days' => 14,
       ),
@@ -506,7 +506,7 @@
       ),
       'emergency' => 
       array (
-        'path' => 'F:\\REPO\\penjualan\\storage\\logs/laravel.log',
+        'path' => 'F:\\REPO\\penjualanta\\storage\\logs/laravel.log',
       ),
     ),
   ),
@@ -553,7 +553,7 @@
       'theme' => 'default',
       'paths' => 
       array (
-        0 => 'F:\\REPO\\penjualan\\resources\\views/vendor/mail',
+        0 => 'F:\\REPO\\penjualanta\\resources\\views/vendor/mail',
       ),
     ),
   ),
@@ -683,7 +683,7 @@
     'lifetime' => '120',
     'expire_on_close' => false,
     'encrypt' => false,
-    'files' => 'F:\\REPO\\penjualan\\storage\\framework/sessions',
+    'files' => 'F:\\REPO\\penjualanta\\storage\\framework/sessions',
     'connection' => NULL,
     'table' => 'sessions',
     'store' => NULL,
@@ -746,9 +746,9 @@
   array (
     'paths' => 
     array (
-      0 => 'F:\\REPO\\penjualan\\resources\\views',
+      0 => 'F:\\REPO\\penjualanta\\resources\\views',
     ),
-    'compiled' => 'F:\\REPO\\penjualan\\storage\\framework\\views',
+    'compiled' => 'F:\\REPO\\penjualanta\\storage\\framework\\views',
     'expires' => true,
   ),
   'dompdf' => 
@@ -758,10 +758,10 @@
     'convert_entities' => true,
     'defines' => 
     array (
-      'font_dir' => 'F:\\REPO\\penjualan\\storage\\fonts',
-      'font_cache' => 'F:\\REPO\\penjualan\\storage\\fonts',
+      'font_dir' => 'F:\\REPO\\penjualanta\\storage\\fonts',
+      'font_cache' => 'F:\\REPO\\penjualanta\\storage\\fonts',
       'temp_dir' => 'C:\\Users\\hiday\\AppData\\Local\\Temp',
-      'chroot' => 'F:\\REPO\\penjualan',
+      'chroot' => 'F:\\REPO\\penjualanta',
       'enable_font_subsetting' => false,
       'pdf_backend' => 'CPDF',
       'default_media_type' => 'screen',

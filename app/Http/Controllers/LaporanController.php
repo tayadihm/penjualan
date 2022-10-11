@@ -21,7 +21,7 @@ class LaporanController extends Controller
 
     public function show(Request $request)
     {
-        
+
         $periode = $request->get('periode');
         if ($periode == 'All') {
             $tglawal = $request->get('tglawal');
@@ -37,14 +37,14 @@ class LaporanController extends Controller
             $jurnal = Jurnal::first();
             $akun = \App\Akun::All();
             $bb = DB::table('jurnal')
-                ->whereBetween('tgl_psn', [$tglawal, $tglakhir])
-                ->orderby('tgl_psn', 'ASC')
+                ->whereBetween('tgl_bayar', [$tglawal, $tglakhir])
+                ->orderby('tgl_bayar', 'ASC')
                 ->get();
 
-            $pdf = PDF::loadview('laporan.cetak', [
-                'laporan' => $bb, 
-                'akun' => $akun, 
-                'jurnal' => $jurnal, 
+            $pdf = PDF::loadview('laporan.cetak-jurnal-periode', [
+                'laporan' => $bb,
+                'akun' => $akun,
+                'jurnal' => $jurnal,
                 'tglawal' => $tglawal,
                 'tglakhir' => $tglakhir
                 ])->setPaper('A4', 'landscape');
@@ -52,13 +52,13 @@ class LaporanController extends Controller
         }
     }
 
-    public function reportPenjualan() 
+    public function reportPenjualan()
     {
         return view('laporan.laporan-penjualan');
     }
 
     public function cetakPenjualan(Request $request)
-   { 
+   {
         $periode = $request->get('periode');
         if ($periode == 'All') {
             $pemesanan = Pemesanan::all();
@@ -68,7 +68,7 @@ class LaporanController extends Controller
                     'detail'=>$detail,
                     'laporan'=>$pemesanan,
                     'customer'=>$customer
-                ]); 
+                ]);
             return $pdf->stream();
         } elseif ($periode == 'periode') {
             $tglawal = $request->get('tglawal');
@@ -85,6 +85,6 @@ class LaporanController extends Controller
             ])->setPaper('A4','landscape');
         return $pdf->stream();
         }
-        
+
     }
 }

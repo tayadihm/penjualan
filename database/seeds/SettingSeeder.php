@@ -14,13 +14,13 @@ class SettingSeeder extends Seeder
     {
         $setting = Setting::create([ 
             'id_setting' => '1', 
-            'kd_akun' => '500', 
-            'nama_transaksi' => 'Pembayaran'
+            'kd_akun' => '113', 
+            'nama_transaksi' => 'Piutang Usaha'
         ]);
 
         $setting = Setting::create([ 
             'id_setting' => '2', 
-            'kd_akun' => '101', 
+            'kd_akun' => '111', 
             'nama_transaksi' => 'Kas' 
         ]);
     }

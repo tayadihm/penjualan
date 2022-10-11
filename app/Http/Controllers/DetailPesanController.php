@@ -56,6 +56,7 @@ class DetailPesanController extends Controller
        $nm_cust = $request->nm_cust;
        $tgl_psn = $request->tgl_psn;
        $qty_pesan = $request->qty_pesan;
+       $satuan = $request->satuan;
        $sub_total = $request->sub_total;
        foreach($kd_brg as $key => $no)
        {
@@ -65,6 +66,7 @@ class DetailPesanController extends Controller
            $input['nm_cust'] = $request->nm_cust;
            $input['tgl_psn'] = $request->tgl_psn;
            $input['qty_pesan'] = $qty_pesan[$key];
+           $input['satuan'] = $satuan[$key];
            $input['sub_total'] = $sub_total[$key];
            DetailPesan::insert($input);
        }

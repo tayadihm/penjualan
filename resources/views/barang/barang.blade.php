@@ -15,10 +15,10 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="thead-dark">
+                    <thead class="thead-light">
                         <tr>
-                            <th>Kode Barang</th>
-                            <th>Nama Barang</th>
+                            <th>Kode</th>
+                            <th>Nama Warna</th>
                             <th>Qty</th>
                             <th>Satuan</th>
                             <th>Harga</th>
@@ -63,12 +63,12 @@
                     </div>
                     <div class="modal-body">
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Kode Barang</label>
+                            <label for="exampleFormControlInput1">Kode</label>
                             <input type="text" name="addkdbrg" id="addkdbrg" class="form-control" maxlegth="5"
                                 id="exampleFormControlInput1">
                         </div>
                         <div class="form-group">
-                            <label for="exampleFormControlInput1">Nama Barang</label>
+                            <label for="exampleFormControlInput1">Nama Warna</label>
                             <input type="text" name="addnmbrg" id="addnmbrg" class="form-control"
                                 id="exampleFormControlInput1">
                         </div>

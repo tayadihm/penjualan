@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-md-5">
                     <label for="addnmcust">Nama customer</label>
-                    <input id="addnmcust" type="text" name="addnmcust" class="form-control" value="{{ $customer->nm_cust }}">
+                    <input id="addnmcust" type="text" name="addnmcust" class="form-control" value="{{ $customer->nm_cust }}" readonly>
                 </div>
                 <div class="col-md-5">
                     <label for="addnohp">Nomor HP</label>

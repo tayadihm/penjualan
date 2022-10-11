@@ -15,9 +15,9 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
-                    <thead class="thead-dark">
+                    <thead class="thead-light">
                         <tr>
-                            <th>Id Pelanggan</th>
+                            <th>Id</th>
                             <th>Nama Pelanggan</th>
                             <th>No Handphone</th>
                             <th>Email</th>
@@ -37,7 +37,7 @@
                                         href="{{ route('customer.edit', [$cust->idcust]) }}"class="d-none d-sm-inline-block btn btn-sm btn-success shadow-sm">
                                         <i class="fas fa-edit fa-sm text-white-50"></i> Edit</a>
                                     <a href="/customer/hapus/{{ $cust->idcust }}"
-                                        onclick="return confirm('Ingin menghapus data?')"
+                                        onclick="retur n confirm('Ingin menghapus data?')"
                                         class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
                                         <i class="fas fa-trash-alt fa-sm text-white-50"></i> Hapus</a>
                                 </td>
@@ -64,7 +64,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="exampleFormControlInput1">Id Customer</label>
-                            <input type="number" name="addidcust" id="addidcust" class="form-control" maxlegth="5"
+                            <input type="text" name="addidcust" id="addidcust" class="form-control" maxlegth="5"
                                 id="exampleFormControlInput1">
                         </div>
                         <div class="form-group">

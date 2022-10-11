@@ -34,7 +34,8 @@
                     <select id="roles" name="role" class="form-control" required>
                         <option value="">--Pilih Akses--</option>
                         <option value="MARKETING">1.Staff Marketing </option>
-                        <option value="USER">2.User</option>
+                        <option value="DIREKTUR">2.Direktur</option>
+                        <option value="KEUANGAN">3.Keuangan</option>
                     </select>
                 </div>
             </div>

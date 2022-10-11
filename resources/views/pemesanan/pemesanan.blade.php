@@ -51,11 +51,12 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
-                        <thead class="thead-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>
                                 <th>Qty</th>
+                                <th>Satuan</th>
                                 <th>Subtotal</th>
                                 <th>Aksi</th>
                             </tr>
@@ -70,6 +71,8 @@
                                             value="{{ $temp->nm_brg }}" readonly>{{ $temp->nm_brg }}</td>
                                     <td><input name="qty_pesan[]" class="form-control" type="hidden"
                                             value="{{ $temp->qty_pesan }}" readonly>{{ $temp->qty_pesan }}</td>
+                                    <td><input name="satuan[]" class="form-control" type="hidden"
+                                            value="{{ $temp->satuan }}" readonly>{{ $temp->satuan }}</td>
                                     <td> <input name="sub_total[]" class="form-control" type="hidden"
                                             value="{{ $temp->sub_total }}"
                                             readonly>{{ number_format($temp->sub_total) }}</td>
@@ -83,7 +86,7 @@
                                 @php($total += $temp->sub_total)
                             @endforeach
                             <tr>
-                                <td colspan="3"><b>Total</b></td>
+                                <td colspan="4"><b>Total</b></td>
 
                                 <td>
                                     <input name="total" class="form-control" type="hidden"
@@ -113,9 +116,8 @@
                             <th scope="col">No Pemesanan</th>
                             <th scope="col">Customer</th>
                             <th scope="col">Tanggal Pemesanan</th>
-                            <th scope="col">Tanggal Jatuh Tempo</th>
                             <th scope="col">Total</th>
-                            <th scope="col"></th>
+                            <th scope="col">Aksi</th>
                         </tr>
                     </thead>
 
@@ -127,32 +129,24 @@
                                 <td>{{ $value->no_psn }}</td>
                                 <td>{{ $value->nm_cust }}</td>
                                 <td>{{ $value->tgl_psn }}</td>
-                                <td>{{ $value->tgl_tempo }}</td>
-                                <td>{{ number_format($value->total) }}</td>
+                                <td>{{ number_format($value->sub_total) }}</td>
                                 <td>
-                                    <div class="hide-menu">
-                                        <a href="javascript:void(0)" class="text-dark" id="actiondd" role="button"
-                                            data-toggle="dropdown">
-                                            <i class="mdi mdi-dots-vertical"></i>
-                                        </a>
-                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="actiondd">
-                                            <a class="dropdown-item"
-                                                href="{{ url('dashboard/pembayaran/' . $value->id . '/edit') }}"><i
-                                                    class="ti-pencil"></i> Edit </a>
-                                            <form method="post" action="{{ url('dashboard/pembayaran', $value->id) }}"
-                                                id="delete{{ $value->id }}">
-                                                @csrf
-                                                @method('delete')
+                                    <form onsubmit="return confirm('Apakah Anda Yakin?');"
+                                        action="{{ route('transaksi.hapus', $value->no_psn) }}" method="POST">
+                                        <input type="hidden" name="_method" value="DELETE">
+                                        {{ method_field('DELETE') }}
+                                        @csrf
+                                        
+                                        <a href="{{ route('cetak.inv_pdf', [Crypt::encryptString($value->no_psn)]) }}"
+                                            target="_blank"
+                                            class="d-none d-sm-inline-block btn btn-sm btn-warning shadow-sm">
+                                            <i class="fas fa-print fa-sm text-white-50"></i> Cetak Invoice
 
-                                                <button type="button" class="dropdown-item"
-                                                    onclick="deleteData({{ $value->id }})">
-                                                    <i class="ti-trash"></i> Hapus
-                                                </button>
-
-                                            </form>
-
-                                        </div>
-                                    </div>
+                                        <a href="{{ url('/transaksi/hapus-pemesanan/' . Crypt::encryptString($value->no_psn)) }}"
+                                            onclick="return confirm('Ingin menghapus data?')"
+                                            class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm">
+                                            <i class="fas fa-trash-alt fa-sm text-white-50"></i> Hapus</a>
+                                    </form>
                                 </td>
                             </tr>
                             <?php $no++; ?>

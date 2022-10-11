@@ -18,7 +18,18 @@ class PembayaranController extends Controller
 {
     public function index()
     {
-        $pemesanan = Pemesanan::all();
+        $pemesanan = Pemesanan::orderBy('no_psn', 'Desc')->paginate(10);
+
+        return view('pembayaran.pembayaran',compact('pemesanan'));
+    }
+
+    public function cari(Request $request)
+    {
+        $cari = $request->cari;
+
+        $pemesanan = DB::table('pemesanan')
+                    ->where('no_psn','like',"%".$cari."%")
+                    ->paginate();
 
         return view('pembayaran.pembayaran',compact('pemesanan'));
     }
@@ -26,7 +37,7 @@ class PembayaranController extends Controller
     public function edit($id)
     {
         $AWAL = 'FKT';
-        $bulanRomawi = array("", "I","II","III", "IV", "V","VI","VII","VIII","IX","X", "XI","XII"); 
+        $bulanRomawi = array("", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12");
         $noUrutAkhir = Pembayaran::max('no_bayar'); 
         $no = 1; 
         $format=sprintf("%03s", abs((int)$noUrutAkhir + 1)). '/' . $AWAL .'/' . $bulanRomawi[date('n')] .'/' . date('Y');
@@ -41,8 +52,8 @@ class PembayaranController extends Controller
         $detail = DB::table('tampil_pemesanan')->where('no_pesan',$decrypted)->get(); 
         $pemesanan = DB::table('pemesanan')->where('no_psn',$decrypted)->get(); 
         $akunkas = DB::table('setting')->where('nama_transaksi','Kas')->get(); 
-        $akunpembayaran = DB::table('setting')->where('nama_transaksi','Pembayaran')->get();
-        
+        $akunpembayaran = DB::table('setting')->where('nama_transaksi','Piutang Usaha')->get(); 
+
         return view('pembayaran.bayar',[
             'detail'=>$detail,
             'format'=>$format,
@@ -56,15 +67,18 @@ class PembayaranController extends Controller
 
     public function store(Request $request)
     {
-        if (Pembayaran::where('no_psn', $request->no_psn)->exists()) {
-            Alert::warning('Pembayaran Telah dilakukan');
-            return redirect('pembayaran');
+    
+        $validator = \Validator::make($request->all(), [
+            'no_pesan' => 'required|unique:pembayaran,no_psn'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('pembayaran')->with(['error' => 'Gagal, Data Sudah Pernah Diinput!'])->withErrors($validator->errors());
         } else {
             //Simpan ke table pembayaran
             $pembayaran = new Pembayaran;
             $pembayaran->no_bayar = $request->no_faktur;
-            $pembayaran->tgl_bayar = Carbon::now('Asia/Jakarta');
-            $pembayaran->no_faktur = $request->no_faktur;
+            $pembayaran->tgl_bayar = $request->tgl_bayar;
             $pembayaran->no_psn = $request->no_pesan;
             $pembayaran->tgl_psn = $request->tgl_psn;
             $pembayaran->jml_bayar = $request->total;
@@ -86,11 +100,11 @@ class PembayaranController extends Controller
             
             $jurnaldebet = [
                 'no_jurnal' => $request->no_jurnal,
-                'tgl_jurnal' => $request->tgl_bayar,
+                'tgl_bayar' => $request->tgl_bayar,
                 'no_psn' => $request->no_pesan,
                 'tgl_psn' => $request->tgl_psn,
                 'kd_akun' => $request->pembayaran,
-                'nm_akun' => 'Pembayaran',
+                'nm_akun' => 'Kas',
                 'debet' => $request->total,
                 'kredit' => '0',
             ];
@@ -99,11 +113,11 @@ class PembayaranController extends Controller
 
             $jurnalkredit = [
                 'no_jurnal' => $request->no_jurnal,
-                'tgl_jurnal' => $request->tgl_bayar,
+                'tgl_bayar' => $request->tgl_bayar,
                 'no_psn' => $request->no_pesan,
                 'tgl_psn' => $request->tgl_psn,
                 'kd_akun' => $request->kas,
-                'nm_akun' => 'Kas',
+                'nm_akun' => 'Piutang Usaha',
                 'kredit' => $request->total,
                 'debet' => '0',
             ];
@@ -113,5 +127,15 @@ class PembayaranController extends Controller
             
             return redirect('/pembayaran');
         }
+    }
+
+    public function destroy($id)
+    {
+        $decrypted = Crypt::decryptString($id);
+        $pemesanan = DB::table('pemesanan')
+            ->where('no_psn',$decrypted)
+            ->delete();
+        Alert::success('Data berhasil dihapus');
+        return redirect('/pembayaran');
     }
 }

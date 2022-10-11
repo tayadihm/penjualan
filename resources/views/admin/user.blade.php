@@ -17,7 +17,7 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr align="left">
-                            <th width="2%">Id</th>
+                            <th width="2%">No.</th>
                             <th width="10%">Nama</th>
                             <th width="15%">Email</th>
                             <th width="5%">Hak Akses</th>
@@ -67,27 +67,33 @@
                         <div class="form-group"><label class="col-lg-20 control-label">Nama</label>
                             <div class="col-lg-10"><input type="text" name="username" required class="form-control">
                             </div>
-                            <div class="form-group"><label class="col-lg-20 control-label">Email </label>
-                                <div class="col-lg-10"><input type="email" name="email" required class="form-control">
-                                </div>
-                                <div class="form-group"><label class="col-lg-20 control-label">Hak Akses</label>
-                                    <div class="col-lg-10">
-                                        <select id="roles" name="roles" class="form-control" required>
-                                            <option value="">--Pilih Roles--</option>
-                                            <option value="MARKETING">Staff Marketing</option>
-                                            <option value="USER">User</option>
-                                        </select>
-                                    </div>
-                                </div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-20 control-label">Email </label>
+                            <div class="col-lg-10"><input type="email" name="email" required class="form-control">
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
-                                <button type="submit" class="btn btn-primary">Simpan</button>
+                        </div>
+                        <div class="form-group"><label class="col-lg-20 control-label">Password </label>
+                            <div class="col-lg-10"><input type="password" name="password" required class="form-control">
                             </div>
+                        </div>
+                        <div class="form-group"><label class="col-lg-20 control-label">Hak Akses</label>
+                            <div class="col-lg-10">
+                                <select id="roles" name="roles" class="form-control" required>
+                                    <option value="">--Pilih Roles--</option>
+                                    <option value="MARKETING">Staff Marketing</option>
+                                    <option value="DIREKTUR">Direktur</option>
+                                    <option value="KEUANGAN">Keuangan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-light" data-dismiss="modal">Tutup</button>
+                            <button type="submit" class="btn btn-primary">Simpan</button>
                         </div>
                     </div>
                 </div>
-            </form>
         </div>
+        </form>
+    </div>
     </div>
 @endsection

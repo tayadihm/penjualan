@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Alert;
 use App\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\DB;
+use Alert;
 class UserController extends Controller
 {
     /**
@@ -41,14 +41,16 @@ class UserController extends Controller
         $save_user= new \App\User;
         $save_user->name=$request->get('username');
         $save_user->email=$request->get('email');
-        $save_user->password=$request->get('password');
+        $save_user->password=bcrypt($request->password);
         if ($request->get('roles')=='MARKETING'){
-        $save_user->assignRole('marketing');}
-        else
+        $save_user->assignRole('Marketing');
+        } else if ($request->get('roles')=='DIREKTUR'){
+            $save_user->assignRole('Direktur');
+        } else
         {
-            $save_user->assignRole('user');}
+            $save_user->assignRole('Keuangan');}
             $save_user->save();
-            Alert::Succes('Data berhasil tersimpan');
+            Alert::success('Data berhasil disimpan');
             return redirect()->route ('user.index');
     }
 
@@ -90,7 +92,7 @@ class UserController extends Controller
         $user = User::find($id);
         DB::table('model_has_roles')->where('model_id',$id)->delete();
         $user->assignRole($request->input('role'));
-        Alert::success('Data Berhasil update');
+        Alert::success('Data berhasil diupdate');
         return redirect()->route( 'user.index');
     }
 
@@ -103,9 +105,9 @@ class UserController extends Controller
     public function destroy($id)
     {
         $hapus = \App\User::findOrfail($id);
-        $hapus-> delete;
+        $hapus-> delete();
         $hapus-> removeRole('marketing' , 'user');
-        Alert::succes('Data berhasil dihapus');
+        Alert::success('Data berhasil dihapus');
         return redirect()->route('user.index');
     }
 }

@@ -15,7 +15,7 @@
         <div class="card-body">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped " id="data-Table" width="100%" cellspacing="0">
-                    <thead class="thead-dark">
+                    <thead class="thead-light">
                         <tr>
                             <th width="20%">Kode Akun</th>
                             <th>Nama Akun</th>

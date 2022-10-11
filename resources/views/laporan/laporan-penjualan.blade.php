@@ -13,7 +13,7 @@
                             <fieldset>
                                 <div class="form-group row">
                                     <div class="col-md-4">
-                                        <label for="klasifikasi">Periode Jurnal</label>
+                                        <label for="klasifikasi">Periode</label>
                                         <input id="jenis" type="hidden" name="jenis" value="bukubesar"
                                             class="form-control">
                                         <select id="periode" name="periode"class="form-control">

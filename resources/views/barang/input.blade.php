@@ -6,11 +6,11 @@
             <legend>Input Data Barang</legend>
             <div class="form-group row">
                 <div class="col-md-5">
-                    <label for="usname">Kode Barang</label>
+                    <label for="usname">Kode</label>
                     <input id="usname" type="text" name="kodebarang" class="form-control"required>
                 </div>
                 <div class="col-md-5">
-                    <label for="nama">Nama Barang</label>
+                    <label for="nama">Nama Warna</label>
                     <input id="nama" type="text" name="nama" class="form-control"required>
                 </div>
                 <div class="col-md-5">

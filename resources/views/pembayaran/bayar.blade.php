@@ -51,7 +51,7 @@
 
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped" id="dataTable" width="100%" cellspacing="0">
-                        <thead class="thead-dark">
+                        <thead class="thead-light">
                             <tr>
                                 <th>Kode Barang</th>
                                 <th>Nama Barang</th>

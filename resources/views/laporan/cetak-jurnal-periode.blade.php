@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Laporan Penjualan</title>
+    <title>Laporan Jurnal Umum</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <style type="text/css">
@@ -15,37 +15,37 @@
 
 <body>
     <table class="table table-borderless" width="100%" align="center">
-        <tr>
-            <td align="center">
-                <h5>Laporan Penjualan<br>PT. Hee Jung Jawa Barat</h5>
+        <tr align="center">
+            <td>
+                <h4>Laporan Jurnal Umum</h4>
+                <h4>PT. Hee Jung</h4>
+                <h5>{{ date('d-m-Y', strtotime($tglawal)) }} - {{ date('d-m-Y', strtotime($tglakhir)) }}</h5>
             </td>
         </tr>
     </table>
     <table class="table" width="100%" align="center">
-        <thead>
+        <thead class="thead-light">
             <tr>
-                <th width="8%">Tanggal Pemesanan</th>
+                <th width="10%">Tanggal Jurnal</th>
+                <th width="10%">Tanggal Bayar</th>
                 <th width="10%">Nomor Pemesanan</th>
-                <th width="15%">Nama Customer</th>
-                <th width="5%">Kode Barang</th>
-                <th width="5%">Nama Barang</th>
-                <th width="5%">Qty Barang</th>
-                <th width="5%">Satuan</th>
-                <th width="5%">Total</th>
+                <th width="5%">Kode Akun</th>
+                <th width="7%">Nama Akun</th>
+                <th width="5%">Debet</th>
+                <th width="5%">Kredit</th>
             </tr>
         </thead>
         <tbody>
             @php $i=1 @endphp
-            @foreach ($detail as $bb)
+            @foreach ($laporan as $bb)
                 <tr>
                     <td>{{ $bb->tgl_psn }}</td>
+                    <td>{{ $bb->tgl_bayar }}</td>
                     <td>{{ $bb->no_psn }}</td>
-                    <td>{{ $bb->nm_cust }}</td>
-                    <td>{{ $bb->kd_brg }}</td>
-                    <td>{{ $bb->nm_brg }}</td>
-                    <td>{{ $bb->qty_pesan }}</td>
-                    <td>{{ $bb->satuan }}</td>
-                    <td>{{ number_format($bb->sub_total) }}</td>
+                    <td>{{ $bb->kd_akun }}</td>
+                    <td>{{ $bb->nm_akun }}</td>
+                    <td>{{ number_format($bb->debet) }}</td>
+                    <td>{{ number_format($bb->kredit) }}</td>
                 </tr>
             @endforeach
         </tbody>

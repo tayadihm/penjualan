@@ -8,11 +8,11 @@
             <legend>Ubah Data Barang</legend>
             <div class="form-group row">
                 <div class="col-md-5">
-                    <label for="addkdbrg">Kode Barang</label>
+                    <label for="addkdbrg">Kode</label>
                     <input class="form-control" type="text" name="addkdbrg" value="{{ $barang->kd_brg }}" readonly>
                 </div>
                 <div class="col-md-5">
-                    <label for="addnmbrg">Nama Barang</label>
+                    <label for="addnmbrg">Nama Warna</label>
                     <input id="addnmbrg" type="text" name="addnmbrg" class="form-control"
                         value="{{ $barang->nm_brg }}">
                 </div>
@@ -22,8 +22,7 @@
                 </div>
                 <div class="col-md-5">
                     <label for="Satuan">Satuan</label>
-                    <input id="addsatuan" type="text" name="addsatuan" class="form-control"
-                        value="{{ $barang->satuan }}">
+                    <input id="addsatuan" type="text" name="addsatuan" class="form-control" value="{{ $barang->satuan }}"  readonly>
                 </div>
                 <div class="col-md-5">
                     <label for="Harga">Harga</label>
